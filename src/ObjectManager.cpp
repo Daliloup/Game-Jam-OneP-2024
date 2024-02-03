@@ -4,6 +4,7 @@
 
 #include "ObjectManager.h"
 #include "Object.h"
+#include <algorithm>
 #include <raylib.h>
 
 ObjectManager::ObjectManager() {

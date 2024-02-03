@@ -24,6 +24,8 @@ Chouette::Chouette(nlohmann::json json_object) : Object(json_object) {
     //DO stuff here ?
     m_texture = g_textures["chouette"];
     m_acceleration = {0, .1f};
+    m_enable_multijump = true;
+    m_jump_power = 0.f;
 }
 
 void Chouette::Update() {
@@ -98,7 +100,6 @@ void Chouette::HandleHorizontalCollisions() {
 }
 
 void Chouette::HandleJump() {
-    printf("%f\n", m_jump_power);
     bool grounded = Grounded();
     if(grounded) {
         m_jump_power = 3.0f;
