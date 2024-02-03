@@ -6,22 +6,22 @@ add_subdirectory(raylib)
 add_subdirectory(json)
 file(COPY ./sprites DESTINATION .)
 
-add_executable(Chouette main.cpp
-        Tileset.h
-        Tileset.cpp
-        Room/Room.h
-        Room/Room.cpp
-        Room/Layer.h
-        Room/Layer.cpp
-        Room/TileLayer.h
-        Room/TileLayer.cpp
-        globals.h
-        ObjectManager.cpp
-        ObjectManager.h
-        Object.cpp
-        Object.h
-        object_classes/Chouette.cpp
-        object_classes/Chouette.h
+add_executable(Chouette src/main.cpp
+        src/Tileset.h
+        src/Tileset.cpp
+        src/Room/Room.h
+        src/Room/Room.cpp
+        src/Room/Layer.h
+        src/Room/Layer.cpp
+        src/Room/TileLayer.h
+        src/Room/TileLayer.cpp
+        src/globals.h
+        src/ObjectManager.cpp
+        src/ObjectManager.h
+        src/Object.cpp
+        src/Object.h
+        src/object_classes/Chouette.cpp
+        src/object_classes/Chouette.h
 )
 target_link_libraries(Chouette PRIVATE raylib)
 target_include_directories(Chouette PRIVATE json/single_include)

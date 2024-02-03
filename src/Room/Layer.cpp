@@ -1,6 +1,6 @@
 #include "Layer.h"
 
-#include <nlohmann/json.hpp>
+#include "nlohmann/json.hpp"
 
 Layer::Layer(nlohmann::json layer_json) {
     m_name = layer_json["name"];
