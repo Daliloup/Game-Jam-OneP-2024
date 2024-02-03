@@ -32,11 +32,11 @@ Object::Object(nlohmann::json json_object) {
 }
 
 void Object::Update() {
-    m_hitbox.x += m_velocity.x;
     m_hitbox.y += m_velocity.y;
-
-    m_velocity.x += m_acceleration.x;
     m_velocity.y += m_acceleration.y;
+
+    m_hitbox.x += m_velocity.x;
+    m_velocity.x += m_acceleration.x;
 }
 
 void Object::Draw() {
@@ -61,4 +61,8 @@ Object *Object::Construct(nlohmann::json json_object) {
 }
 Rectangle Object::GetHitbox() {
     return m_hitbox;
+}
+
+void Object::SetObjectManager(ObjectManager *objectManager) {
+    m_object_manager = objectManager;
 }

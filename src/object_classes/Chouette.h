@@ -18,6 +18,8 @@ public:
 
 private:
     Texture *texture;
+    void HandleVerticalCollisions();
+    void HandlsHorizontalCollisions();
 };
 
 

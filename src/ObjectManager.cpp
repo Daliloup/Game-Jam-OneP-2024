@@ -17,6 +17,7 @@ void ObjectManager::Update() {
 }
 
 void ObjectManager::AddObject(Object *object) {
+    object->SetObjectManager(this);
     objects.push_back(object);
 }
 

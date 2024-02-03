@@ -8,6 +8,7 @@
 #include "raylib.h"
 #include <vector>
 #include <nlohmann/json_fwd.hpp>
+#include "ObjectManager.h"
 
 
 class Object {
@@ -19,6 +20,7 @@ public:
     void SetPosition(Vector2 position);
     void SetVelocity(Vector2 velocity);
     void SetAcceleration(Vector2 acceleration);
+    void SetObjectManager(ObjectManager *objectManager);
     Rectangle GetHitbox();
 
     static Object *Construct(nlohmann::json json_object);
@@ -27,6 +29,8 @@ protected:
     Rectangle m_hitbox;
     Vector2 m_velocity;
     Vector2 m_acceleration;
+
+    ObjectManager *m_object_manager;
 };
 
 typedef Object * (*ObjectConstructor) (nlohmann::json json_object);
