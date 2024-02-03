@@ -8,6 +8,7 @@
 #include "object_classes/Chouette.h"
 #include "object_classes/RoomTrigger.h"
 #include "StateManager.h"
+#include "GameOver.h"
 
 #include <unordered_map>
 #include <string>
@@ -18,6 +19,7 @@ std::unordered_map<std::string, ObjectConstructor> g_object_constructors;
 
 
 int main() {
+    g_tilesets = std::unordered_map<std::string, Tileset *>();
     InitWindow(960, 540, "window");
     SetTargetFPS(60);
 
@@ -48,12 +50,12 @@ int main() {
         ClearBackground(BLACK);
         sm->Draw();
         //
-        if(((Room *)sm->GetState())->CheckCollisionsTiles(mouse_rec, 1, "collision")) {
+        /*if(((Room *)sm->GetState())->CheckCollisionsTiles(mouse_rec, 1, "collision")) {
             DrawRectangleRec(mouse_rec, RED);
         }
         else {
             DrawRectangleRec(mouse_rec, BLUE);
-        }
+        }*/
         EndTextureMode();
 
         BeginDrawing();

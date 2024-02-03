@@ -11,6 +11,8 @@
 #include "../Room/ObjectLayer.h"
 #include "../Room/TileLayer.h"
 #include "../Room/Room.h"
+#include "../StateManager.h"
+#include "../GameOver.h"
 
 Chouette::Chouette(Vector2 position) : Object(position) {
     m_id = 1;
@@ -116,6 +118,7 @@ void Chouette::HandleJump() {
     if((int)m_jump_power > 0 && IsKeyPressed(KEY_SPACE)) {
         m_velocity.y -= m_jump_power;
         m_jump_power -= 1.f;
+        //m_object_manager->GetLayer()->GetRoom()->Manager()->SetState(new GameOver);
     }
 }
 
