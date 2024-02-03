@@ -16,6 +16,8 @@ public:
     void Update();
     void Draw();
     void AddObject(Object *object);
+    void RemoveObject(Object *object);
+    void DestroyObject(Object *object);
     std::vector<Object *> ObjectCollisionsList(Object *object);
     void SetLayer(ObjectLayer *layer);
     ObjectLayer *GetLayer();

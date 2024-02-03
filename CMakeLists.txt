@@ -25,6 +25,10 @@ add_executable(Chouette src/main.cpp
         src/object_classes/Chouette.h
         src/Room/ObjectLayer.h
         src/Room/ObjectLayer.cpp
+        src/StateManager.h
+        src/State.h
+        src/State.cpp
+        src/StateManager.cpp
 )
 target_link_libraries(Chouette PRIVATE raylib)
 target_include_directories(Chouette PRIVATE json/single_include)

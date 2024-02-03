@@ -6,6 +6,7 @@
 #include "Room/Room.h"
 #include "Tileset.h"
 #include "object_classes/Chouette.h"
+#include "StateManager.h"
 
 #include <unordered_map>
 #include <string>
@@ -30,7 +31,7 @@ int main() {
 
     g_object_constructors["chouette"] = Chouette::Construct;
 
-    Room room("levels/level1.json");
+    StateManager *sm = new StateManager(new Room("levels/level1.json"));
 
     Rectangle mouse_rec = {0.f, 0.f, 16.f, 16.f};
 
@@ -38,14 +39,14 @@ int main() {
         //
         mouse_rec.x = (float)GetMouseX() / 3.f;
         mouse_rec.y = (float)GetMouseY() / 3.f;
-        room.Update();
+        sm->Update();
 
 
         BeginTextureMode(render);
         ClearBackground(BLACK);
-        room.Draw();
+        sm->Draw();
         //
-        if(room.CheckCollisionsTiles(mouse_rec, 1, "collision")) {
+        if(((Room *)sm->GetState())->CheckCollisionsTiles(mouse_rec, 1, "collision")) {
             DrawRectangleRec(mouse_rec, RED);
         }
         else {
@@ -59,6 +60,7 @@ int main() {
         EndDrawing();
     }
 
+    delete sm;
     UnloadTexture(tileset_texture);
     UnloadRenderTexture(render);
     CloseWindow();

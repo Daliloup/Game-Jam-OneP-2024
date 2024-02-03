@@ -8,7 +8,7 @@ using json = nlohmann::json;
 #include "TileLayer.h"
 #include "ObjectLayer.h"
 
-Room::Room(const char *filename) {
+Room::Room(const char *filename) : State() {
     printf("Room::Room : loading %s\n", filename);
 
     std::ifstream level_file(filename);

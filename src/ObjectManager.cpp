@@ -10,15 +10,16 @@ ObjectManager::ObjectManager() {
     m_layer = nullptr;
 }
 
+ObjectManager::~ObjectManager() {
+    for (Object *object : objects) {
+        delete object;
+    }
+}
+
 void ObjectManager::Update() {
     for (Object *object : objects) {
         object->Update();
     }
-}
-
-void ObjectManager::AddObject(Object *object) {
-    object->SetObjectManager(this);
-    objects.push_back(object);
 }
 
 void ObjectManager::Draw() {
@@ -27,10 +28,22 @@ void ObjectManager::Draw() {
     }
 }
 
-ObjectManager::~ObjectManager() {
-    for (Object *object : objects) {
-        delete object;
-    }
+void ObjectManager::AddObject(Object *object) {
+    object->SetObjectManager(this);
+    objects.push_back(object);
+}
+
+void ObjectManager::RemoveObject(Object *object) {
+    auto find_result = std::find(objects.begin(), objects.end(),object);
+    if(find_result == objects.end()) return;
+    objects.erase(find_result);
+}
+
+void ObjectManager::DestroyObject(Object *object) {
+    auto find_result = std::find(objects.begin(), objects.end(),object);
+    if(find_result == objects.end()) return;
+    objects.erase(find_result);
+    delete object;
 }
 
 std::vector<Object *> ObjectManager::ObjectCollisionsList(Object *object) {
