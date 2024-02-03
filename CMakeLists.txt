@@ -16,6 +16,10 @@ add_executable(Chouette main.cpp
         Room/TileLayer.h
         Room/TileLayer.cpp
         globals.h
+        ObjectManager.cpp
+        ObjectManager.h
+        Object.cpp
+        Object.h
 )
 target_link_libraries(Chouette PRIVATE raylib)
 target_include_directories(Chouette PRIVATE json/single_include)
