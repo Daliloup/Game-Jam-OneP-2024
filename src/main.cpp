@@ -6,6 +6,7 @@
 #include "Room/Room.h"
 #include "Tileset.h"
 #include "object_classes/Chouette.h"
+#include "object_classes/RoomTrigger.h"
 #include "StateManager.h"
 
 #include <unordered_map>
@@ -30,6 +31,7 @@ int main() {
     g_tilesets["dream"] = &ts;
 
     g_object_constructors["chouette"] = Chouette::Construct;
+    g_object_constructors["room_trigger"] = RoomTrigger::Construct;
 
     StateManager *sm = new StateManager(new Room("level1.json"));
 

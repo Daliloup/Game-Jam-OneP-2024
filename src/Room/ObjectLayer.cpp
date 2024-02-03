@@ -33,3 +33,7 @@ void ObjectLayer::Update() {
 void ObjectLayer::Draw() {
     m_object_manager->Draw();
 }
+
+ObjectManager *ObjectLayer::GetObjectManager() {
+    return m_object_manager;
+}

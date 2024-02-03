@@ -62,7 +62,7 @@ void Chouette::HandleVerticalCollisions() {
         }
     }
 
-    std::vector<Object *> collisions = m_object_manager->ObjectCollisionsList(this);
+    /*std::vector<Object *> collisions = m_object_manager->ObjectCollisionsList(this);
     for (Object *object : collisions) {
         Rectangle hitbox = object->GetHitbox();
         if (((m_hitbox.y + m_hitbox.height) > hitbox.y) && (m_hitbox.y < hitbox.y)) {
@@ -74,6 +74,7 @@ void Chouette::HandleVerticalCollisions() {
             m_velocity.y = 0;
         }
     }
+     */
 }
 
 void Chouette::HandleHorizontalCollisions() {
@@ -86,6 +87,7 @@ void Chouette::HandleHorizontalCollisions() {
         }
     }
 
+    /*
     std::vector<Object *> collisions = m_object_manager->ObjectCollisionsList(this);
     for (Object *object : collisions) {
         Rectangle hitbox = object->GetHitbox();
@@ -99,6 +101,7 @@ void Chouette::HandleHorizontalCollisions() {
             m_velocity.y = 0;
         }
     }
+     */
 }
 
 void Chouette::HandleJump() {

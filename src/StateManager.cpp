@@ -4,6 +4,7 @@
 
 StateManager::StateManager(State *state) {
     m_state = state;
+    if(m_state != nullptr) m_state->SetManager(this);
 }
 
 StateManager::~StateManager() {
@@ -22,6 +23,7 @@ void StateManager::Draw() {
 
 void StateManager::SetState(State *state) {
     m_trashcan.push_back(m_state);
+    state->SetManager(this);
     m_state = state;
 }
 

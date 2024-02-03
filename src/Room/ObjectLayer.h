@@ -15,6 +15,8 @@ public:
     void Update() override;
     void Draw() override;
 
+    ObjectManager *GetObjectManager();
+
 private:
     ObjectManager *m_object_manager;
 };

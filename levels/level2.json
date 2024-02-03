@@ -21,6 +21,8 @@
           "_eid": "97865140",
           "x": 56,
           "y": 80,
+          "width": 16,
+          "height": 16,
           "originX": 0,
           "originY": 0,
           "values": {"target_room": "level1.json", "target_x": 64, "target_y": 40}
