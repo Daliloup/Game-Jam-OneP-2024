@@ -1,18 +1,27 @@
 #include <iostream>
 #include <raylib.h>
+#include "ObjectManager.h"
+#include "Object.h"
+
 
 int main() {
     InitWindow(960, 540, "window");
+    SetTargetFPS(60);
 
     RenderTexture render = LoadRenderTexture(320, 180);
+    Texture chouette_sprite = LoadTexture("sprites/chouette.png");
+
+    ObjectManager om;
 
     while(!WindowShouldClose()) {
         //
+        om.Update();
+
 
         BeginTextureMode(render);
         ClearBackground(BLACK);
-        DrawLine(0, 0, 25, 32, WHITE);
-
+        DrawTexturePro(chouette_sprite, {0, 0, 32, 32}, {0, 0, 32, 32}, {0, 0}, 0, WHITE);
+        om.Draw();
         //
         EndTextureMode();
 
