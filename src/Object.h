@@ -22,10 +22,12 @@ public:
     void SetAcceleration(Vector2 acceleration);
     void SetObjectManager(ObjectManager *objectManager);
     Rectangle GetHitbox();
+    int ID();
 
     static Object *Construct(nlohmann::json json_object);
 
 protected:
+    int m_id;
     Rectangle m_hitbox;
     Vector2 m_velocity;
     Vector2 m_acceleration;

@@ -11,6 +11,7 @@
 
 
 Object::Object(Vector2 position) {
+    m_id = 0;
     m_hitbox = {position.x, position.y, 32, 32};
     m_velocity = {0, 0};
     m_acceleration = {0, 0};
@@ -61,6 +62,10 @@ Object *Object::Construct(nlohmann::json json_object) {
 }
 Rectangle Object::GetHitbox() {
     return m_hitbox;
+}
+
+int Object::ID() {
+    return m_id;
 }
 
 void Object::SetObjectManager(ObjectManager *objectManager) {

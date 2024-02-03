@@ -11,7 +11,7 @@ using json = nlohmann::json;
 Room::Room(const char *filename) : State() {
     printf("Room::Room : loading %s\n", filename);
 
-    std::ifstream level_file(filename);
+    std::ifstream level_file(std::string("./levels/") + filename);
     json level_json = json::parse(level_file);
     level_file.close();
 

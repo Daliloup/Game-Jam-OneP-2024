@@ -13,6 +13,7 @@
 #include "../Room/Room.h"
 
 Chouette::Chouette(Vector2 position) : Object(position) {
+    m_id = 1;
     m_velocity = {0, 0};
     m_acceleration = {0, 50.f};
     m_texture = g_textures["chouette"];
@@ -22,6 +23,7 @@ Chouette::Chouette(Vector2 position) : Object(position) {
 
 Chouette::Chouette(nlohmann::json json_object) : Object(json_object) {
     //DO stuff here ?
+    m_id = 1;
     m_texture = g_textures["chouette"];
     m_acceleration = {0, .1f};
     m_enable_multijump = true;

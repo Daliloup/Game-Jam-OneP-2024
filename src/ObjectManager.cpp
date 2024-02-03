@@ -58,6 +58,17 @@ std::vector<Object *> ObjectManager::ObjectCollisionsList(Object *object) {
     return collisions;
 }
 
+std::vector<Object *> ObjectManager::ObjectCollisionsList(Object *object, int target_id) {
+    std::vector<Object *> collisions = {};
+    for (Object *object2 : objects) {
+        if ((object != object2) && (object2->ID() == target_id) &&
+            (CheckCollisionRecs(object->GetHitbox(), object2->GetHitbox()))) {
+            collisions.push_back(object2);
+        }
+    }
+    return collisions;
+}
+
 void ObjectManager::SetLayer(ObjectLayer *layer) {
     m_layer = layer;
 }

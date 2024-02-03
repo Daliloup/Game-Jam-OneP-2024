@@ -31,7 +31,7 @@ int main() {
 
     g_object_constructors["chouette"] = Chouette::Construct;
 
-    StateManager *sm = new StateManager(new Room("levels/level1.json"));
+    StateManager *sm = new StateManager(new Room("level1.json"));
 
     Rectangle mouse_rec = {0.f, 0.f, 16.f, 16.f};
 
