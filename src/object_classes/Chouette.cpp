@@ -10,8 +10,9 @@ void Chouette::Update() {
 }
 
 void Chouette::Draw() {
-    DrawTexturePro(*texture, {0, 0, 32, 32}, {m_position.x, m_position.y, 32, 32}, {0, 0}, 0, WHITE);
-
+    DrawTexturePro(*texture, {0, 0, 32, 32},
+                   {m_hitbox.x, m_hitbox.y, 32, 32},
+                   {0, 0}, 0, WHITE);
 }
 
 Chouette::Chouette(Vector2 position, Texture *tex) : Object(position) {

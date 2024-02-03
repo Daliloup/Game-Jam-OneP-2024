@@ -16,13 +16,12 @@ public:
     void SetPosition(Vector2 position);
     void SetVelocity(Vector2 velocity);
     void SetAcceleration(Vector2 acceleration);
+    Rectangle GetHitbox();
 
 protected:
-    Vector2 m_position;
+    Rectangle m_hitbox;
     Vector2 m_velocity;
     Vector2 m_acceleration;
-
-
 };
 
 

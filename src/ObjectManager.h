@@ -15,6 +15,7 @@ public:
     void Update();
     void Draw();
     void AddObject(Object *object);
+    std::vector<Object *> ObjectCollisionsList(Object *object);
 private:
     std::vector<Object *> objects;
 };
