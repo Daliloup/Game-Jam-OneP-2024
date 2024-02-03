@@ -11,12 +11,13 @@
 class Object {
 public:
     explicit Object(Vector2 position);
-    void Draw();
-    void Update();
+    virtual void Draw();
+    virtual void Update();
     void SetPosition(Vector2 position);
     void SetVelocity(Vector2 velocity);
     void SetAcceleration(Vector2 acceleration);
-private:
+
+protected:
     Vector2 m_position;
     Vector2 m_velocity;
     Vector2 m_acceleration;

@@ -10,5 +10,6 @@ add_executable(Chouette main.cpp
         ObjectManager.h
         Object.cpp
         Object.h
-        test.cpp)
+        object_classes/Chouette.cpp
+        object_classes/Chouette.h)
 target_link_libraries(Chouette PRIVATE raylib)

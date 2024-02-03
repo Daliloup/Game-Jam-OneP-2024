@@ -20,7 +20,6 @@ int main() {
 
         BeginTextureMode(render);
         ClearBackground(BLACK);
-        DrawTexturePro(chouette_sprite, {0, 0, 32, 32}, {0, 0, 32, 32}, {0, 0}, 0, WHITE);
         om.Draw();
         //
         EndTextureMode();
