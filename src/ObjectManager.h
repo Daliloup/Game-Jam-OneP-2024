@@ -7,6 +7,7 @@
 #include <vector>
 
 class Object;
+class ObjectLayer;
 
 class ObjectManager {
 public:
@@ -16,8 +17,10 @@ public:
     void Draw();
     void AddObject(Object *object);
     std::vector<Object *> ObjectCollisionsList(Object *object);
+    void SetLayer(ObjectLayer *layer);
 private:
     std::vector<Object *> objects;
+    ObjectLayer *m_layer;
 };
 
 

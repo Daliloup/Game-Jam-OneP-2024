@@ -10,11 +10,11 @@ Layer::Layer(nlohmann::json layer_json) {
     m_grid_cell_height = layer_json["gridCellHeight"];
     m_grid_cells_x = layer_json["gridCellsX"];
     m_grid_cells_y = layer_json["gridCellsY"];
+    m_type = LayerType::LayerType_Default;
+    m_room = nullptr;
 }
 
-Layer::~Layer() {
-
-}
+Layer::~Layer() = default;
 
 void Layer::Update() {
 
@@ -22,4 +22,20 @@ void Layer::Update() {
 
 void Layer::Draw() {
 
+}
+
+LayerType Layer::Type() {
+    return m_type;
+}
+
+std::string Layer::Name() {
+    return m_name;
+}
+
+Room *Layer::GetRoom() {
+    return m_room;
+}
+
+void Layer::SetRoom(Room *room) {
+    m_room = room;
 }

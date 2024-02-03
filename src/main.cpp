@@ -32,8 +32,12 @@ int main() {
 
     Room room("sprites/level1.json");
 
+    Rectangle mouse_rec = {0.f, 0.f, 16.f, 16.f};
+
     while(!WindowShouldClose()) {
         //
+        mouse_rec.x = (float)GetMouseX() / 3.f;
+        mouse_rec.y = (float)GetMouseY() / 3.f;
         room.Update();
 
 
@@ -41,6 +45,12 @@ int main() {
         ClearBackground(BLACK);
         room.Draw();
         //
+        if(room.CheckCollisionsTiles(mouse_rec, 1, "collision")) {
+            DrawRectangleRec(mouse_rec, RED);
+        }
+        else {
+            DrawRectangleRec(mouse_rec, BLUE);
+        }
         EndTextureMode();
 
         BeginDrawing();

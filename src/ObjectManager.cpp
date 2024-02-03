@@ -7,7 +7,7 @@
 #include <raylib.h>
 
 ObjectManager::ObjectManager() {
-
+    m_layer = nullptr;
 }
 
 void ObjectManager::Update() {
@@ -42,4 +42,8 @@ std::vector<Object *> ObjectManager::ObjectCollisionsList(Object *object) {
         }
     }
     return collisions;
+}
+
+void ObjectManager::SetLayer(ObjectLayer *layer) {
+    m_layer = layer;
 }

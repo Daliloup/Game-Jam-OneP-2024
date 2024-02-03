@@ -1,6 +1,8 @@
 #ifndef CHOUETTE_OBJECTLAYER_H
 #define CHOUETTE_OBJECTLAYER_H
 
+#include <raylib.h>
+
 #include "Layer.h"
 
 class ObjectManager;

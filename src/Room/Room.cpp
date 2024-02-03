@@ -20,16 +20,19 @@ Room::Room(const char *filename) {
         return;
     }
 
-    for(auto json_layer : level_json["layers"]) {
+    for(const auto& json_layer : level_json["layers"]) {
+        Layer *l = nullptr;
         if(json_layer.contains("data")) {
-            m_layers.push_back(new TileLayer(json_layer));
+            l = new TileLayer(json_layer);
         }
         else if(json_layer.contains("entities")) {
-            m_layers.push_back(new ObjectLayer(json_layer));
+            l = new ObjectLayer(json_layer);
         }
         else {
-            m_layers.push_back(new Layer(json_layer));
+            l = new Layer(json_layer);
         }
+        l->SetRoom(this);
+        m_layers.push_back(l);
     }
 }
 
@@ -43,4 +46,12 @@ void Room::Update() {
 
 void Room::Draw() {
     for(Layer *l : m_layers) l->Draw();
+}
+
+bool Room::CheckCollisionsTiles(Rectangle rec, short tile_to_check, std::string layer_name) {
+    for(Layer *l : m_layers) {
+        if(l->Type() != LayerType_Tiles || l->Name() != layer_name) continue;
+        if(((TileLayer *)l)->CheckCollision(rec, tile_to_check)) return true;
+    }
+    return false;
 }

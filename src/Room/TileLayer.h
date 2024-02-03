@@ -3,6 +3,8 @@
 
 #include "Layer.h"
 
+#include <raylib.h>
+
 class Tileset;
 
 class TileLayer : public Layer {
@@ -11,6 +13,10 @@ public:
     ~TileLayer() override;
 
     void Draw() override;
+
+    bool CheckCollision(Rectangle rec, int value_to_check);
+    short GetTile(int x, int y);
+
 private:
     short *m_data;
     Tileset *m_tileset;
