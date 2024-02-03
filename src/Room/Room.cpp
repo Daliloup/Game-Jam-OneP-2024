@@ -6,6 +6,7 @@ using json = nlohmann::json;
 
 #include "Layer.h"
 #include "TileLayer.h"
+#include "ObjectLayer.h"
 
 Room::Room(const char *filename) {
     printf("Room::Room : loading %s\n", filename);
@@ -24,7 +25,7 @@ Room::Room(const char *filename) {
             m_layers.push_back(new TileLayer(json_layer));
         }
         else if(json_layer.contains("entities")) {
-            //entity layer
+            m_layers.push_back(new ObjectLayer(json_layer));
         }
         else {
             m_layers.push_back(new Layer(json_layer));

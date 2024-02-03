@@ -5,11 +5,14 @@
 #include "Object.h"
 #include "Room/Room.h"
 #include "Tileset.h"
+#include "object_classes/Chouette.h"
 
 #include <unordered_map>
 #include <string>
 
 std::unordered_map<std::string, Tileset *> g_tilesets;
+std::unordered_map<std::string, Texture *> g_textures;
+std::unordered_map<std::string, ObjectConstructor> g_object_constructors;
 
 
 int main() {
@@ -19,26 +22,24 @@ int main() {
     RenderTexture render = LoadRenderTexture(320, 180);
 
     Texture chouette_sprite = LoadTexture("sprites/chouette.png");
+    g_textures["chouette"] = &chouette_sprite;
+
     Texture tileset_texture = LoadTexture("./sprites/tileset.png");
     Tileset ts(&tileset_texture, 8, 8);
     g_tilesets["dream"] = &ts;
 
-    Room room("sprites/level1.json");
-    ObjectManager om;
+    g_object_constructors["chouette"] = Chouette::Construct;
 
+    Room room("sprites/level1.json");
 
     while(!WindowShouldClose()) {
         //
-        om.Update();
-
         room.Update();
 
 
         BeginTextureMode(render);
         ClearBackground(BLACK);
         room.Draw();
-        DrawTexturePro(chouette_sprite, {0, 0, 32, 32}, {0, 0, 32, 32}, {0, 0}, 0, WHITE);
-        om.Draw();
         //
         EndTextureMode();
 

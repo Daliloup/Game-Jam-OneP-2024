@@ -5,9 +5,28 @@
 #include "Object.h"
 #include "raylib.h"
 
+#include <nlohmann/json.hpp>
+#include <utility>
+#include <iostream>
+
 
 Object::Object(Vector2 position) {
     m_hitbox = {position.x, position.y, 32, 32};
+    m_velocity = {0, 0};
+    m_acceleration = {0, 0};
+}
+
+Object::Object(nlohmann::json json_object) {
+    printf("Object::Object(json)\n");
+    std::cout << json_object << "\n";
+    if(json_object.contains("width") && json_object.contains("height")) {
+        m_hitbox = {(float) json_object["x"], (float) json_object["y"], (float) json_object["width"], (float) json_object["height"]};
+    }
+    else {
+        printf("OBJECT DON'T HAVE WIDTH AND HEIGHT >:(\n");
+        m_hitbox = {(float) json_object["x"], (float) json_object["y"], 16.f, 16.f};
+    }
+
     m_velocity = {0, 0};
     m_acceleration = {0, 0};
 }
@@ -37,6 +56,9 @@ void Object::SetAcceleration(Vector2 acceleration) {
     m_acceleration = acceleration;
 }
 
+Object *Object::Construct(nlohmann::json json_object) {
+    return new Object(std::move(json_object));
+}
 Rectangle Object::GetHitbox() {
     return m_hitbox;
 }

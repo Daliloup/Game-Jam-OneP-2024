@@ -12,7 +12,7 @@ TileLayer::TileLayer(nlohmann::json layer_json) : Layer(layer_json) {
     for(size_t i = 0; i < data_len; ++i) m_data[i] = data[i];
 
     std::string tileset_name = layer_json["tileset"];
-    printf("Trying to load tileset %s", tileset_name.c_str());
+    printf("Trying to load tileset %s\n", tileset_name.c_str());
     m_tileset = g_tilesets[layer_json["tileset"]];
 }
 

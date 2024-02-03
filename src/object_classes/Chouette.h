@@ -7,11 +7,15 @@
 #include "../Object.h"
 
 
-class Chouette:public Object{
+class Chouette : public Object{
 public:
-    Chouette(Vector2 position, Texture *tex);
+    Chouette(Vector2 position);
+    Chouette(nlohmann::json json_obect);
     void Update() override;
     void Draw() override;
+
+    static Object *Construct(nlohmann::json json_obect);
+
 private:
     Texture *texture;
 };

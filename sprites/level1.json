@@ -15,7 +15,7 @@
       "gridCellsX": 40,
       "gridCellsY": 30,
       "entities": [
-        {"name": "player", "id": 0, "_eid": "95294766", "x": 40, "y": 16, "originX": 0, "originY": 0}
+        {"name": "chouette", "id": 0, "_eid": "95294766", "x": 72, "y": 24, "width": 16, "height": 16, "originX": 0, "originY": 0}
       ]
     },
     {
