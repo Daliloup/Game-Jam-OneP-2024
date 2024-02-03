@@ -82,6 +82,46 @@
       "values": [],
       "texture": "../sprites/chouette.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAADNJREFUWIXtzkEBADAIxLBjNudhnlEyZPBJDTR1X/8sdjbnAAAAAAAAAAAAAAAAAAAASTLz/gLpTnfzMgAAAABJRU5ErkJggg=="
+    },
+    {
+      "exportID": "97865140",
+      "name": "room_trigger",
+      "limit": -1,
+      "size": {"x": 16, "y": 16},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "target_room", "definition": "String", "display": 0, "defaults": "No_Room", "maxLength": 24, "trimWhitespace": true},
+        {"name": "target_x", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": 0, "max": 100},
+        {"name": "target_y", "definition": "Integer", "display": 0, "defaults": 0, "bounded": false, "min": 0, "max": 100}
+      ]
     }
   ],
   "tilesets": [
