@@ -55,3 +55,10 @@ bool Room::CheckCollisionsTiles(Rectangle rec, short tile_to_check, std::string 
     }
     return false;
 }
+
+Layer *Room::GetLayer(std::string layer_name) {
+    for(Layer *l : m_layers) {
+        if(l->Name() == layer_name) return l;
+    }
+    return nullptr;
+}

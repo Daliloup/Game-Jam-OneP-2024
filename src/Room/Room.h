@@ -17,6 +17,7 @@ public:
     void Draw();
 
     bool CheckCollisionsTiles(Rectangle rec, short tile_to_check, std::string layer_name);
+    Layer *GetLayer(std::string layer_name);
 
 private:
     std::vector<Layer *> m_layers;

@@ -18,6 +18,7 @@ public:
     void AddObject(Object *object);
     std::vector<Object *> ObjectCollisionsList(Object *object);
     void SetLayer(ObjectLayer *layer);
+    ObjectLayer *GetLayer();
 private:
     std::vector<Object *> objects;
     ObjectLayer *m_layer;

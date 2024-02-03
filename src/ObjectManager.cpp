@@ -47,3 +47,7 @@ std::vector<Object *> ObjectManager::ObjectCollisionsList(Object *object) {
 void ObjectManager::SetLayer(ObjectLayer *layer) {
     m_layer = layer;
 }
+
+ObjectLayer *ObjectManager::GetLayer() {
+    return m_layer;
+}

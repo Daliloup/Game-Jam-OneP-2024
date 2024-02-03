@@ -17,9 +17,15 @@ public:
     static Object *Construct(nlohmann::json json_obect);
 
 private:
-    Texture *texture;
+    Texture *m_texture;
+    float m_jump_power;
+    bool m_enable_multijump;
+
     void HandleVerticalCollisions();
-    void HandlsHorizontalCollisions();
+    void HandleHorizontalCollisions();
+    void HandleJump();
+
+    bool Grounded();
 };
 
 
