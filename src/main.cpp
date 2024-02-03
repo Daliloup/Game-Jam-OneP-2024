@@ -30,7 +30,7 @@ int main() {
 
     g_object_constructors["chouette"] = Chouette::Construct;
 
-    Room room("sprites/level1.json");
+    Room room("levels/level1.json");
 
     Rectangle mouse_rec = {0.f, 0.f, 16.f, 16.f};
 

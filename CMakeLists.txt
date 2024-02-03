@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 add_subdirectory(raylib)
 add_subdirectory(json)
 file(COPY ./sprites DESTINATION .)
+file(COPY ./levels DESTINATION .)
 
 add_executable(Chouette src/main.cpp
         src/Tileset.h

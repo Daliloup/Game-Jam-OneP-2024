@@ -1,0 +1,91 @@
+{
+  "name": "editor_project",
+  "ogmoVersion": "3.4.0",
+  "levelPaths": ["."],
+  "backgroundColor": "#282c34ff",
+  "gridColor": "#3c4049cc",
+  "anglesRadians": true,
+  "directoryDepth": 5,
+  "layerGridDefaultSize": {"x": 8, "y": 8},
+  "levelDefaultSize": {"x": 320, "y": 240},
+  "levelMinSize": {"x": 128, "y": 128},
+  "levelMaxSize": {"x": 4096, "y": 4096},
+  "levelValues": [],
+  "defaultExportMode": ".json",
+  "compactExport": false,
+  "externalScript": "",
+  "playCommand": "",
+  "entityTags": [],
+  "layers": [
+    {
+      "definition": "entity",
+      "name": "objects",
+      "gridSize": {"x": 8, "y": 8},
+      "exportID": "96893885",
+      "requiredTags": [],
+      "excludedTags": []
+    },
+    {
+      "definition": "tile",
+      "name": "collision",
+      "gridSize": {"x": 8, "y": 8},
+      "exportID": "96898396",
+      "exportMode": 0,
+      "arrayMode": 0,
+      "defaultTileset": "collision"
+    },
+    {
+      "definition": "tile",
+      "name": "main",
+      "gridSize": {"x": 8, "y": 8},
+      "exportID": "96891079",
+      "exportMode": 0,
+      "arrayMode": 0,
+      "defaultTileset": "dream"
+    }
+  ],
+  "entities": [
+    {
+      "exportID": "96889858",
+      "name": "chouette",
+      "limit": -1,
+      "size": {"x": 32, "y": 32},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": true,
+      "resizeableY": true,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [],
+      "texture": "../sprites/chouette.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAADNJREFUWIXtzkEBADAIxLBjNudhnlEyZPBJDTR1X/8sdjbnAAAAAAAAAAAAAAAAAAAASTLz/gLpTnfzMgAAAABJRU5ErkJggg=="
+    }
+  ],
+  "tilesets": [
+    {"label": "dream", "path": "../sprites/tileset.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAARxJREFUWIXtVjEOgkAQnFMrv0C0ltLQ+wMT6KhpeIAf8Bs0NDZ08gZ6ansMD7DREgtzhFw4boG9woRpNuxemLlhkkWAiKT2G+pZCmInFwCwopKn9z0AgKvKC62p5GFR4vZx2erRfeF8OVwFRYBUHhYlxTASspOHKKhon0Alfzzf2rN9M7UnyQFiBqKgQnby2md3t9USqLO+XliUbRYmOWAi1Tkk+10H/jMDXOTAxAzMBXsG+jA0Z3GgL+2muRQ1ywFTwimiZjmgu/mQI6o46xlQZ6o46xkw5YPFgTFg3QWUsKlg3QXyZWM3YrdvJQOU5ST7VjIwJpSzHOCoXQc2JvLYyUVS+00UVEjxU85VYycXxv8BCVu/5QsWLFjwBd+RKOUASKd3AAAAAElFTkSuQmCC", "tileWidth": 8, "tileHeight": 8, "tileSeparationX": 0, "tileSeparationY": 0, "tileMarginX": 0, "tileMarginY": 0},
+    {"label": "collision", "path": "../sprites/collisions_layer.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAC5JREFUWIXt0LENADAIA0FmYm52TDYIHUjRXePW+ohGZZ7Xjlg9oYACCgAAAN+7ybtB4dQQuTcAAAAASUVORK5CYII=", "tileWidth": 8, "tileHeight": 8, "tileSeparationX": 0, "tileSeparationY": 0, "tileMarginX": 0, "tileMarginY": 0}
+  ]
+}
