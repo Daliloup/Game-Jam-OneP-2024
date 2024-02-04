@@ -19,6 +19,8 @@ public:
 
     void SetCheckpointPosition(Vector2 pos);
 
+    void GetRekt();
+
 private:
     Tileset *m_tileset;
     float m_jump_power;

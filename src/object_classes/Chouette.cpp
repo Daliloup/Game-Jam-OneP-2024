@@ -45,12 +45,12 @@ Chouette::Chouette(nlohmann::json json_object) : Object(json_object) {
     m_go_right = false;
     m_anim_state = 0;
     m_sprite_index = 0;
-    m_checkpoint_position = {m_hitbox.x, m_hitbox.y};
 
     m_hitbox.width = 16.f;
     m_hitbox.height = 24.f;
     m_hitbox.x += 9.f;
     m_hitbox.y += 8.f;
+    m_checkpoint_position = {m_hitbox.x, m_hitbox.y};
 }
 
 void Chouette::Update() {
@@ -101,8 +101,7 @@ void Chouette::HandleVerticalCollisions() {
         }
 
         if (tile_collisions->CheckCollision(m_hitbox, 2)) {
-            m_hitbox.x = m_checkpoint_position.x+9.f;
-            m_hitbox.y = m_checkpoint_position.y+8.f;
+            GetRekt();
         }
     }
 
@@ -195,4 +194,9 @@ bool Chouette::Grounded() {
 
 void Chouette::SetCheckpointPosition(Vector2 pos) {
     m_checkpoint_position = pos;
+}
+
+void Chouette::GetRekt() {
+    m_hitbox.x = m_checkpoint_position.x;
+    m_hitbox.y = m_checkpoint_position.y;
 }
