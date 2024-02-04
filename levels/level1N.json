@@ -14,21 +14,7 @@
       "gridCellHeight": 8,
       "gridCellsX": 40,
       "gridCellsY": 30,
-      "entities": [
-        {"name": "chouette", "id": 0, "_eid": "96889858", "x": 64, "y": 40, "width": 32, "height": 32, "originX": 0, "originY": 0},
-        {
-          "name": "room_trigger",
-          "id": 1,
-          "_eid": "97865140",
-          "x": 144,
-          "y": 48,
-          "width": 16,
-          "height": 16,
-          "originX": 0,
-          "originY": 0,
-          "values": {"target_room": "level2.json", "target_x": 160, "target_y": 79}
-        }
-      ]
+      "entities": []
     },
     {
       "name": "collision",

@@ -20,6 +20,7 @@ public:
     void DestroyObject(Object *object);
     std::vector<Object *> ObjectCollisionsList(Object *object);
     std::vector<Object *> ObjectCollisionsList(Object *object, int target_id);
+    std::vector<Object *> ObjectList(int target_id);
     void SetLayer(ObjectLayer *layer);
     ObjectLayer *GetLayer();
 private:

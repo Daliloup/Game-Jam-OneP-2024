@@ -15,6 +15,7 @@ Object::Object(Vector2 position) {
     m_hitbox = {position.x, position.y, 32, 32};
     m_velocity = {0, 0};
     m_acceleration = {0, 0};
+    m_object_manager = nullptr;
 }
 
 Object::Object(nlohmann::json json_object) {

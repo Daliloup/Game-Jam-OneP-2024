@@ -33,6 +33,7 @@ int main() {
     g_tilesets["dream"] = &ts;
 
     Texture background_lg = LoadTexture("./sprites/background_lg.png");
+    g_textures["background_normal"] = &background_lg;
 
     g_object_constructors["chouette"] = Chouette::Construct;
     g_object_constructors["room_trigger"] = RoomTrigger::Construct;
@@ -56,9 +57,6 @@ int main() {
 
         BeginTextureMode(render);
         ClearBackground(BLACK);
-        DrawTexturePro(background_lg, {0, 0, 80, 45},
-                       {0, 0, 320, 180},
-                       {0, 0}, 0, WHITE);
         sm->Draw();
         //
         /*if(((Room *)sm->GetState())->CheckCollisionsTiles(mouse_rec, 1, "collision")) {

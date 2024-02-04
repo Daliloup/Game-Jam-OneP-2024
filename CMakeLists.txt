@@ -35,6 +35,8 @@ add_executable(Chouette src/main.cpp
         src/GameOver.h
         src/MusicManager.cpp
         src/MusicManager.h
+        src/object_classes/SleepingChouette.h
+        src/object_classes/SleepingChouette.cpp
 )
 target_link_libraries(Chouette PRIVATE raylib)
 target_include_directories(Chouette PRIVATE json/single_include)

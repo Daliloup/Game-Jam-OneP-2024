@@ -20,9 +20,12 @@ public:
 
     bool CheckCollisionsTiles(Rectangle rec, short tile_to_check, std::string layer_name);
     Layer *GetLayer(std::string layer_name);
+    std::string FileName();
 
 private:
     std::vector<Layer *> m_layers;
+    std::string m_filename;
+    Texture *m_bg;
 };
 
 
