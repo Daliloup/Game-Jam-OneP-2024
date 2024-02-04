@@ -162,6 +162,46 @@
       ],
       "texture": "../sprites/door_tile.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAACZJREFUGJVjdNWw+a8o+JVBU5aLARlcf/yN4f57bgYmBgJgeCgAAGJUB7iQGCUDAAAAAElFTkSuQmCC"
+    },
+    {
+      "exportID": "03776233",
+      "name": "button",
+      "limit": -1,
+      "size": {"x": 8, "y": 8},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": true,
+      "resizeableY": true,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "key", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
+      ],
+      "texture": "../sprites/button.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAEFJREFUGJVjYKAUMMIYN8OT/yNLqK+cy8jAwMDAhC55+fZ5FA1M6EbqqhrCFWFVgA6wKtBVNUQ48v////+xKYIBACHzEytN7Lk8AAAAAElFTkSuQmCC"
     }
   ],
   "tilesets": [
