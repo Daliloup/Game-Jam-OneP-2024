@@ -49,7 +49,7 @@
           "height": 128,
           "originX": 0,
           "originY": 0,
-          "values": {"target_room": "level4.json", "target_x": 0, "target_y": 0}
+          "values": {"target_room": "level4.json", "target_x": 16, "target_y": 112}
         },
         {
           "name": "room_trigger",
