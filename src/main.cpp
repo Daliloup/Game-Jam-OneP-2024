@@ -93,7 +93,7 @@ int main() {
                     float whence = GetMusicTimePlayed(*current_music);
                     current_music = &day_music;
                     PlayMusicStream(*current_music);
-                    SeekMusicStream(*current_music, whence * (8.f/15.f));
+                    SeekMusicStream(*current_music, whence * (15.f/8.f));
                     printf("a\n");
                 }
             }
@@ -103,7 +103,7 @@ int main() {
                     float whence = GetMusicTimePlayed(*current_music);
                     current_music = &dream_music;
                     PlayMusicStream(*current_music);
-                    SeekMusicStream(*current_music, whence * (15.f/8.f));
+                    SeekMusicStream(*current_music, whence * (8.f/15.f));
                     printf("b\n");
                 }
             }
