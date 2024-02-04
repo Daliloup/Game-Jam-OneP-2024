@@ -18,6 +18,10 @@
 
 Chouette::Chouette(Vector2 position, bool enable_multijump) : Object(position) {
     m_id = 1;
+    m_hitbox.width = 16.f;
+    m_hitbox.height = 24.f;
+    m_hitbox.x += 9.f;
+    m_hitbox.y += 8.f;
     m_velocity = {0, 0};
     m_acceleration = {0, .1f};
     m_tileset = g_tilesets["chouette"];
@@ -42,6 +46,11 @@ Chouette::Chouette(nlohmann::json json_object) : Object(json_object) {
     m_anim_state = 0;
     m_sprite_index = 0;
     m_checkpoint_position = {m_hitbox.x, m_hitbox.y};
+
+    m_hitbox.width = 16.f;
+    m_hitbox.height = 24.f;
+    m_hitbox.x += 9.f;
+    m_hitbox.y += 8.f;
 }
 
 void Chouette::Update() {
@@ -75,7 +84,7 @@ void Chouette::Update() {
 
 void Chouette::Draw() {
     if(m_tileset != nullptr)
-        m_tileset->DrawTile(m_sprite_index, (int)m_hitbox.x, (int)m_hitbox.y, m_go_right);
+        m_tileset->DrawTile(m_sprite_index, (int)m_hitbox.x-9, (int)m_hitbox.y-8, m_go_right);
 }
 
 Object *Chouette::Construct(nlohmann::json json_object) {
@@ -92,8 +101,8 @@ void Chouette::HandleVerticalCollisions() {
         }
 
         if (tile_collisions->CheckCollision(m_hitbox, 2)) {
-            m_hitbox.x = m_checkpoint_position.x;
-            m_hitbox.y = m_checkpoint_position.y;
+            m_hitbox.x = m_checkpoint_position.x+9.f;
+            m_hitbox.y = m_checkpoint_position.y+8.f;
         }
     }
 
@@ -166,8 +175,8 @@ void Chouette::HandleSleep() {
 
     Room *nightmare_room = new Room(nightmare_name.c_str());
     ObjectLayer *objl = (ObjectLayer *) nightmare_room->GetLayer("objects");
-    objl->GetObjectManager()->AddObject(new Chouette({(float)(int)m_hitbox.x, (float)(int)m_hitbox.y}, true));
-    objl->GetObjectManager()->AddObject(new SleepingChouette({(float)(int)m_hitbox.x, (float)(int)m_hitbox.y}));
+    objl->GetObjectManager()->AddObject(new Chouette({(float)(int)m_hitbox.x-9.f, (float)(int)m_hitbox.y-8.f}, true));
+    objl->GetObjectManager()->AddObject(new SleepingChouette({(float)(int)m_hitbox.x-9.f, (float)(int)m_hitbox.y-8.f}));
     m_object_manager->GetLayer()->GetRoom()->Manager()->SetState(nightmare_room);
 
 }
