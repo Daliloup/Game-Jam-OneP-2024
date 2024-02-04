@@ -41,6 +41,8 @@ add_executable(Chouette src/main.cpp
         src/object_classes/Door.cpp
         src/object_classes/Button.h
         src/object_classes/Button.cpp
+        src/object_classes/Bell.h
+        src/object_classes/Bell.cpp
 )
 target_link_libraries(Chouette PRIVATE raylib)
 target_include_directories(Chouette PRIVATE json/single_include)

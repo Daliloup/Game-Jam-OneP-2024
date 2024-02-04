@@ -9,6 +9,7 @@ public:
     ~Tileset();
 
     void DrawTile(int index, int x, int y);
+    void DrawTile(int index, int x, int y, bool h_flip);
     void DrawTile(int index, int x, int y, Color c);
 
 private:

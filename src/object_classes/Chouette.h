@@ -6,6 +6,7 @@
 #define CHOUETTE_CHOUETTE_H
 #include "../Object.h"
 
+class Tileset;
 
 class Chouette : public Object{
 public:
@@ -17,9 +18,14 @@ public:
     static Object *Construct(nlohmann::json json_obect);
 
 private:
-    Texture *m_texture;
+    Tileset *m_tileset;
     float m_jump_power;
     bool m_enable_multijump;
+
+    bool m_walking;
+    bool m_go_right;
+    int m_anim_state;
+    int m_sprite_index;
 
     void HandleVerticalCollisions();
     void HandleHorizontalCollisions();

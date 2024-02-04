@@ -25,6 +25,13 @@ void RoomTrigger::Update() {
 
         Room *new_room = new Room(m_target_room.c_str());
         ObjectLayer *object_layer = (ObjectLayer *) new_room->GetLayer("objects");
+
+        auto chouettes = object_layer->GetObjectManager()->ObjectList(1);
+        while (chouettes.size() > 0) {
+            object_layer->GetObjectManager()->DestroyObject(chouettes.back());
+            chouettes.pop_back();
+        }
+
         object_layer->GetObjectManager()->AddObject(chouette);
         state_manager->SetState(new_room);
         return;
