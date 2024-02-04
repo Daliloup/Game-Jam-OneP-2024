@@ -73,8 +73,8 @@ int main() {
     Rectangle mouse_rec = {0.f, 0.f, 16.f, 16.f};
 
     InitAudioDevice();
-    Music day_music = LoadMusicStream("../music/dream_theme.wav");        //actually dream music
-    Music dream_music = LoadMusicStream("../music/day_theme.wav");        //actually day music
+    Music day_music = LoadMusicStream("./music/dream_theme.wav");        //actually dream music
+    Music dream_music = LoadMusicStream("./music/day_theme.wav");        //actually day music
     Music *current_music = &day_music;
     PlayMusicStream(day_music);
 

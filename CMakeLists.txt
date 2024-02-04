@@ -6,6 +6,7 @@ add_subdirectory(raylib)
 add_subdirectory(json)
 file(COPY ./sprites DESTINATION .)
 file(COPY ./levels DESTINATION .)
+file(COPY ./music DESTINATION .)
 
 add_executable(Chouette src/main.cpp
         src/Tileset.h
