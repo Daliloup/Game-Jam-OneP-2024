@@ -126,6 +126,8 @@ int main() {
         BeginDrawing();
         DrawTexturePro(render.texture, {0, 0, 320, -180}, {0, 0, (float)GetRenderWidth(), (float)GetRenderHeight()}, {0, 0}, 0, WHITE);
         DrawFPS(10, 10);
+        DrawText("SPACE : jump", 10, 32, 20, WHITE);
+        DrawText("D : sleep", 10, 54, 20, WHITE);
         EndDrawing();
     }
 
