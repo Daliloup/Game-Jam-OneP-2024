@@ -38,7 +38,7 @@
           "height": 64,
           "originX": 0,
           "originY": 0,
-          "values": {"target_room": "level3.json", "target_x": 0, "target_y": 0}
+          "values": {"target_room": "level3.json", "target_x": 16, "target_y": 152}
         }
       ]
     },
