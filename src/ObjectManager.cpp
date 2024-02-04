@@ -4,6 +4,8 @@
 
 #include "ObjectManager.h"
 #include "Object.h"
+#include "Room/ObjectLayer.h"
+#include "Room/Room.h"
 #include <algorithm>
 #include <raylib.h>
 
@@ -18,8 +20,8 @@ ObjectManager::~ObjectManager() {
 }
 
 void ObjectManager::Update() {
-    for (Object *object : objects) {
-        object->Update();
+    for(int i = 0; i < objects.size(); ++i) {
+        objects[i]->Update();
     }
 }
 
@@ -38,6 +40,11 @@ void ObjectManager::RemoveObject(Object *object) {
     auto find_result = std::find(objects.begin(), objects.end(),object);
     if(find_result == objects.end()) return;
     objects.erase(find_result);
+
+    if(m_layer == nullptr || m_layer->GetRoom() == nullptr) return;
+    if(m_layer->GetRoom()->GetFollowingObject() == object) {
+        m_layer->GetRoom()->SetFollowingObject(nullptr);
+    }
 }
 
 void ObjectManager::DestroyObject(Object *object) {
@@ -45,6 +52,11 @@ void ObjectManager::DestroyObject(Object *object) {
     if(find_result == objects.end()) return;
     objects.erase(find_result);
     delete object;
+
+    if(m_layer == nullptr || m_layer->GetRoom() == nullptr) return;
+    if(m_layer->GetRoom()->GetFollowingObject() == object) {
+        m_layer->GetRoom()->SetFollowingObject(nullptr);
+    }
 }
 
 std::vector<Object *> ObjectManager::ObjectCollisionsList(Object *object) {
@@ -67,6 +79,16 @@ std::vector<Object *> ObjectManager::ObjectCollisionsList(Object *object, int ta
         }
     }
     return collisions;
+}
+
+std::vector<Object *> ObjectManager::ObjectList(int target_id) {
+    std::vector<Object *> r = {};
+    for (Object *object2 : objects) {
+        if (object2->ID() == target_id) {
+            r.push_back(object2);
+        }
+    }
+    return r;
 }
 
 void ObjectManager::SetLayer(ObjectLayer *layer) {

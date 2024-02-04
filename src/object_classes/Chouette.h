@@ -9,7 +9,7 @@
 
 class Chouette : public Object{
 public:
-    Chouette(Vector2 position);
+    Chouette(Vector2 position, bool enable_multijump = false);
     Chouette(nlohmann::json json_obect);
     void Update() override;
     void Draw() override;
@@ -24,6 +24,7 @@ private:
     void HandleVerticalCollisions();
     void HandleHorizontalCollisions();
     void HandleJump();
+    void HandleSleep();
 
     bool Grounded();
 };

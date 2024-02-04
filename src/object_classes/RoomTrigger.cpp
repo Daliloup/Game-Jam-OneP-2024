@@ -21,6 +21,7 @@ void RoomTrigger::Update() {
         StateManager *state_manager = m_object_manager->GetLayer()->GetRoom()->Manager();
 
         chouette->SetPosition({(float)m_target_x, (float)m_target_y});
+        chouette->SetVelocity({0.f, 0.f});
 
         Room *new_room = new Room(m_target_room.c_str());
         ObjectLayer *object_layer = (ObjectLayer *) new_room->GetLayer("objects");

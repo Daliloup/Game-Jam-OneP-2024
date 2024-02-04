@@ -9,6 +9,7 @@
 #include <raylib.h>
 
 class Layer;
+class Object;
 
 class Room : public State {
 public:
@@ -20,9 +21,18 @@ public:
 
     bool CheckCollisionsTiles(Rectangle rec, short tile_to_check, std::string layer_name);
     Layer *GetLayer(std::string layer_name);
+    std::string FileName();
+
+    Object *GetFollowingObject();
+    void SetFollowingObject(Object *obj);
 
 private:
     std::vector<Layer *> m_layers;
+    int m_width, m_height;
+    std::string m_filename;
+    Texture *m_bg;
+    Camera2D m_camera;
+    Object *m_following_object;
 };
 
 

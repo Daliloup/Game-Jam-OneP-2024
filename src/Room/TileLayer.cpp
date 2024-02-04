@@ -30,7 +30,7 @@ void TileLayer::Draw() {
     int painter_y = m_offset_y;
 
     for(int y = 0; y < m_grid_cells_y; ++y) {
-        for(int x = 0; x < m_grid_cells_y; ++x) {
+        for(int x = 0; x < m_grid_cells_x; ++x) {
             m_tileset->DrawTile(m_data[x+y*m_grid_cells_x], painter_x, painter_y);
             painter_x += m_grid_cell_width;
         }
@@ -46,10 +46,10 @@ bool TileLayer::CheckCollision(Rectangle rec, int value_to_check) {
        rec.y >= (float)(m_offset_y+m_grid_cell_height*m_grid_cells_y)) return false;
 
     int x_begin = ((int)rec.x - m_offset_x) / m_grid_cell_width;
-    int x_end = ((int)(rec.x+rec.width) - m_offset_x) / m_grid_cell_width;
+    int x_end = ((int)(rec.x+rec.width-1) - m_offset_x) / m_grid_cell_width;
 
     int y_begin = ((int)rec.y - m_offset_y) / m_grid_cell_height;
-    int y_end = ((int)(rec.y+rec.height) - m_offset_y) / m_grid_cell_height;
+    int y_end = ((int)(rec.y+rec.height-1) - m_offset_y) / m_grid_cell_height;
 
     if(x_begin < 0) x_begin = 0;
     if(x_end >= m_grid_cells_x) x_end = m_grid_cells_x-1;

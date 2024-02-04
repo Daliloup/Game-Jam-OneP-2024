@@ -26,6 +26,18 @@
           "originX": 0,
           "originY": 0,
           "values": {"target_room": "level1.json", "target_x": 64, "target_y": 40}
+        },
+        {
+          "name": "door",
+          "id": 1,
+          "_eid": "03675848",
+          "x": 264,
+          "y": 40,
+          "width": 8,
+          "height": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"key": "level1_door"}
         }
       ]
     },

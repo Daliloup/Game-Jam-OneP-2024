@@ -13,13 +13,14 @@
 #include "../Room/Room.h"
 #include "../StateManager.h"
 #include "../GameOver.h"
+#include "SleepingChouette.h"
 
-Chouette::Chouette(Vector2 position) : Object(position) {
+Chouette::Chouette(Vector2 position, bool enable_multijump) : Object(position) {
     m_id = 1;
     m_velocity = {0, 0};
-    m_acceleration = {0, 50.f};
+    m_acceleration = {0, .1f};
     m_texture = g_textures["chouette"];
-    m_enable_multijump = true;
+    m_enable_multijump = enable_multijump;
     m_jump_power = 0.f;
 }
 
@@ -28,11 +29,12 @@ Chouette::Chouette(nlohmann::json json_object) : Object(json_object) {
     m_id = 1;
     m_texture = g_textures["chouette"];
     m_acceleration = {0, .1f};
-    m_enable_multijump = true;
+    m_enable_multijump = false;
     m_jump_power = 0.f;
 }
 
 void Chouette::Update() {
+    m_object_manager->GetLayer()->GetRoom()->SetFollowingObject(this);
     m_velocity.y += m_acceleration.y;
     HandleJump();
     m_hitbox.y += m_velocity.y;
@@ -42,11 +44,13 @@ void Chouette::Update() {
     m_velocity.x = (float)(IsKeyDown(KEY_RIGHT) - IsKeyDown(KEY_LEFT)) * 1.f;
     m_hitbox.x += m_velocity.x;
     HandleHorizontalCollisions();
+
+    if(IsKeyPressed(KEY_D)) HandleSleep();
 }
 
 void Chouette::Draw() {
     DrawTexturePro(*m_texture, {0, 0, 32, 32},
-                   {(float)(int)m_hitbox.x, (float)(int)m_hitbox.y+1, 32, 32},
+                   {(float)(int)m_hitbox.x, (float)(int)m_hitbox.y, 32, 32},
                    {0, 0}, 0, WHITE);
 }
 
@@ -64,7 +68,7 @@ void Chouette::HandleVerticalCollisions() {
         }
     }
 
-    /*std::vector<Object *> collisions = m_object_manager->ObjectCollisionsList(this);
+    std::vector<Object *> collisions = m_object_manager->ObjectCollisionsList(this, 4); //doors
     for (Object *object : collisions) {
         Rectangle hitbox = object->GetHitbox();
         if (((m_hitbox.y + m_hitbox.height) > hitbox.y) && (m_hitbox.y < hitbox.y)) {
@@ -76,7 +80,7 @@ void Chouette::HandleVerticalCollisions() {
             m_velocity.y = 0;
         }
     }
-     */
+
 }
 
 void Chouette::HandleHorizontalCollisions() {
@@ -89,8 +93,8 @@ void Chouette::HandleHorizontalCollisions() {
         }
     }
 
-    /*
-    std::vector<Object *> collisions = m_object_manager->ObjectCollisionsList(this);
+
+    std::vector<Object *> collisions = m_object_manager->ObjectCollisionsList(this, 4);     //doors
     for (Object *object : collisions) {
         Rectangle hitbox = object->GetHitbox();
         if (((m_hitbox.x + m_hitbox.width) > hitbox.x) && (m_hitbox.x < hitbox.x)) {
@@ -98,12 +102,11 @@ void Chouette::HandleHorizontalCollisions() {
             m_velocity.x = 0;
         }
         else if ((m_hitbox.x < (hitbox.x + hitbox.width)) && (m_hitbox.x + m_hitbox.width > hitbox.x + hitbox.width)) {
-
             m_hitbox.x = hitbox.x + hitbox.width;
             m_velocity.y = 0;
         }
     }
-     */
+
 }
 
 void Chouette::HandleJump() {
@@ -120,6 +123,23 @@ void Chouette::HandleJump() {
         m_jump_power -= 1.f;
         //m_object_manager->GetLayer()->GetRoom()->Manager()->SetState(new GameOver);
     }
+}
+
+void Chouette::HandleSleep() {
+    //This only work because we assume that the multijump is only enabled in the dream world
+    if(!Grounded() || m_enable_multijump) return;
+
+    std::string nightmare_name = m_object_manager->GetLayer()->GetRoom()->FileName();
+    nightmare_name = nightmare_name.substr(0, nightmare_name.size()-5);
+    nightmare_name += "N.json";
+    printf("Trying to load %s\n", nightmare_name.c_str());
+
+    Room *nightmare_room = new Room(nightmare_name.c_str());
+    ObjectLayer *objl = (ObjectLayer *) nightmare_room->GetLayer("objects");
+    objl->GetObjectManager()->AddObject(new Chouette({(float)(int)m_hitbox.x, (float)(int)m_hitbox.y}, true));
+    objl->GetObjectManager()->AddObject(new SleepingChouette({(float)(int)m_hitbox.x, (float)(int)m_hitbox.y}));
+    m_object_manager->GetLayer()->GetRoom()->Manager()->SetState(nightmare_room);
+
 }
 
 bool Chouette::Grounded() {
