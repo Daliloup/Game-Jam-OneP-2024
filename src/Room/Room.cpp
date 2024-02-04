@@ -10,6 +10,7 @@ using json = nlohmann::json;
 #include "ObjectLayer.h"
 
 Room::Room(const char *filename) : State() {
+    m_id = 1;
     m_filename = filename;
     m_width = 0; m_height = 0;
     printf("Room::Room : loading %s\n", filename);

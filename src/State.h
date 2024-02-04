@@ -13,6 +13,11 @@ public:
     StateManager *Manager();
     void SetManager(StateManager *manager);
 
+    int ID();
+
+protected:
+    int m_id;
+
 private:
     StateManager *m_manager;
 };

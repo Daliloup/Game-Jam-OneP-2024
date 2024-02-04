@@ -73,9 +73,11 @@ int main() {
     Rectangle mouse_rec = {0.f, 0.f, 16.f, 16.f};
 
     InitAudioDevice();
-    Music day_music = LoadMusicStream("../music/day_theme.wav");
-    Music dream_music = LoadMusicStream("../music/dream_theme.wav");
+    Music day_music = LoadMusicStream("../music/dream_theme.wav");        //actually dream music
+    Music dream_music = LoadMusicStream("../music/day_theme.wav");        //actually day music
+    Music *current_music = &day_music;
     PlayMusicStream(day_music);
+
 
     while(!WindowShouldClose()) {
         //
@@ -83,7 +85,31 @@ int main() {
         mouse_rec.y = (float)GetMouseY() / 3.f;
         sm->Update();
 
-        UpdateMusicStream(day_music);
+        if(sm->GetState()->ID() == 1) {     //room
+            std::string room_name = ((Room *)sm->GetState())->FileName();
+            if(room_name.find('N') != std::string::npos) {  //not in nightmare
+                if(current_music == &dream_music) {
+                    PauseMusicStream(*current_music);
+                    float whence = GetMusicTimePlayed(*current_music);
+                    current_music = &day_music;
+                    PlayMusicStream(*current_music);
+                    SeekMusicStream(*current_music, whence * (8.f/15.f));
+                    printf("a\n");
+                }
+            }
+            else {      //in nightmare
+                if(current_music == &day_music) {
+                    PauseMusicStream(*current_music);
+                    float whence = GetMusicTimePlayed(*current_music);
+                    current_music = &dream_music;
+                    PlayMusicStream(*current_music);
+                    SeekMusicStream(*current_music, whence * (15.f/8.f));
+                    printf("b\n");
+                }
+            }
+        }
+
+        UpdateMusicStream(*current_music);
 
         BeginTextureMode(render);
         ClearBackground(BLACK);
