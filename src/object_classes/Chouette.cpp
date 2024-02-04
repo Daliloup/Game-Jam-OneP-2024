@@ -174,10 +174,16 @@ void Chouette::HandleSleep() {
 
     Room *nightmare_room = new Room(nightmare_name.c_str());
     ObjectLayer *objl = (ObjectLayer *) nightmare_room->GetLayer("objects");
-    objl->GetObjectManager()->AddObject(new Chouette({(float)(int)m_hitbox.x-9.f, (float)(int)m_hitbox.y-8.f}, true));
-    objl->GetObjectManager()->AddObject(new SleepingChouette({(float)(int)m_hitbox.x-9.f, (float)(int)m_hitbox.y-8.f}));
-    m_object_manager->GetLayer()->GetRoom()->Manager()->SetState(nightmare_room);
+    Chouette *new_chouette = new Chouette({(float)(int)m_hitbox.x-9.f, (float)(int)m_hitbox.y-8.f}, true);
+    objl->GetObjectManager()->AddObject(new_chouette);
 
+    if(!new_chouette->Collide()) {
+        objl->GetObjectManager()->AddObject(new SleepingChouette({(float) (int) m_hitbox.x - 9.f, (float) (int) m_hitbox.y - 8.f}));
+        m_object_manager->GetLayer()->GetRoom()->Manager()->SetState(nightmare_room);
+    }
+    else {
+        delete nightmare_room;
+    }
 }
 
 bool Chouette::Grounded() {
@@ -199,4 +205,18 @@ void Chouette::SetCheckpointPosition(Vector2 pos) {
 void Chouette::GetRekt() {
     m_hitbox.x = m_checkpoint_position.x;
     m_hitbox.y = m_checkpoint_position.y;
+}
+
+bool Chouette::Collide() {
+    TileLayer *tile_collisions = (TileLayer *) m_object_manager->GetLayer()->GetRoom()->GetLayer("collision");
+    if(tile_collisions != nullptr) {
+        if(tile_collisions->CheckCollision(m_hitbox, 1)) return true;
+    }
+
+    if(m_object_manager != nullptr) {
+        std::vector<Object *> collisions = m_object_manager->ObjectCollisionsList(this, 4);
+        if (!collisions.empty()) return true;
+    }
+
+    return false;
 }

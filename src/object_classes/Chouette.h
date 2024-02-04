@@ -20,6 +20,7 @@ public:
     void SetCheckpointPosition(Vector2 pos);
 
     void GetRekt();
+    bool Collide();
 
 private:
     Tileset *m_tileset;
