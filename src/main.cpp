@@ -25,12 +25,14 @@ int main() {
 
     RenderTexture render = LoadRenderTexture(320, 180);
 
-    Texture chouette_sprite = LoadTexture("sprites/chouette.png");
+    Texture chouette_sprite = LoadTexture("./sprites/chouette.png");
     g_textures["chouette"] = &chouette_sprite;
 
     Texture tileset_texture = LoadTexture("./sprites/tileset.png");
     Tileset ts(&tileset_texture, 8, 8);
     g_tilesets["dream"] = &ts;
+
+    Texture background_lg = LoadTexture("./sprites/background_lg.png");
 
     g_object_constructors["chouette"] = Chouette::Construct;
     g_object_constructors["room_trigger"] = RoomTrigger::Construct;
@@ -39,15 +41,24 @@ int main() {
 
     Rectangle mouse_rec = {0.f, 0.f, 16.f, 16.f};
 
+    InitAudioDevice();
+    Music day_music = LoadMusicStream("../music/day_theme.wav");
+    Music dream_music = LoadMusicStream("../music/dream_theme.wav");
+    PlayMusicStream(day_music);
+
     while(!WindowShouldClose()) {
         //
         mouse_rec.x = (float)GetMouseX() / 3.f;
         mouse_rec.y = (float)GetMouseY() / 3.f;
         sm->Update();
 
+        UpdateMusicStream(day_music);
 
         BeginTextureMode(render);
         ClearBackground(BLACK);
+        DrawTexturePro(background_lg, {0, 0, 80, 45},
+                       {0, 0, 320, 180},
+                       {0, 0}, 0, WHITE);
         sm->Draw();
         //
         /*if(((Room *)sm->GetState())->CheckCollisionsTiles(mouse_rec, 1, "collision")) {
@@ -67,6 +78,9 @@ int main() {
     delete sm;
     UnloadTexture(tileset_texture);
     UnloadRenderTexture(render);
+    UnloadMusicStream(day_music);
+    UnloadMusicStream(dream_music);
+    CloseAudioDevice();
     CloseWindow();
     return 0;
 }

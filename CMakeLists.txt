@@ -33,6 +33,8 @@ add_executable(Chouette src/main.cpp
         src/object_classes/RoomTrigger.cpp
         src/GameOver.cpp
         src/GameOver.h
+        src/MusicManager.cpp
+        src/MusicManager.h
 )
 target_link_libraries(Chouette PRIVATE raylib)
 target_include_directories(Chouette PRIVATE json/single_include)
