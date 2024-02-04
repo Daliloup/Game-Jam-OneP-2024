@@ -30,4 +30,20 @@ void Tileset::DrawTile(int index, int x, int y) {
                    WHITE);
 }
 
+void Tileset::DrawTile(int index, int x, int y, Color c) {
+    if(index < 0 || index >= m_tile_count) return;
+    int tile_x_index = index % m_tile_count_x;
+    int tile_y_index = index / m_tile_count_x;
+
+    int tile_x_pos = tile_x_index * m_tile_width;
+    int tile_y_pos = tile_y_index * m_tile_height;
+
+    DrawTexturePro(*m_texture,
+                   {(float)tile_x_pos, (float)tile_y_pos, (float)m_tile_width, (float)m_tile_height},
+                   {(float)x, (float)y, (float)m_tile_width, (float)m_tile_height},
+                   {0.f, 0.f}, 0.f,
+                   c);
+}
+
+
 

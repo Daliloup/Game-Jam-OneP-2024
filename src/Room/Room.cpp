@@ -11,6 +11,7 @@ using json = nlohmann::json;
 
 Room::Room(const char *filename) : State() {
     m_filename = filename;
+    m_width = 0; m_height = 0;
     printf("Room::Room : loading %s\n", filename);
 
     std::ifstream level_file(std::string("./levels/") + filename);
@@ -44,6 +45,16 @@ Room::Room(const char *filename) : State() {
     else {
         m_bg = g_textures["background_normal"];
     }
+
+    m_camera = {
+            {0.f, 0.f},
+            {0.f, 0.f},
+            0.f, 1.f
+    };
+    m_following_object = nullptr;
+
+    m_width = level_json["width"];
+    m_height = level_json["height"];
 }
 
 Room::~Room() {
@@ -52,6 +63,18 @@ Room::~Room() {
 
 void Room::Update() {
     for(Layer *l : m_layers) l->Update();
+
+    if(m_following_object != nullptr) {
+        Rectangle objhb = m_following_object->GetHitbox();
+        m_camera.target.x = (float)(int)objhb.x + objhb.width/2.f - 320.f/2.f;
+        m_camera.target.y = (float)(int)objhb.y + objhb.height/2.f - 180.f/2.f;
+    }
+
+    if(m_camera.target.x < 0) m_camera.target.x = 0.f;
+    else if(m_camera.target.x + 320.f >= (float)m_width) m_camera.target.x = (float)m_width-320.f;
+
+    if(m_camera.target.y < 0) m_camera.target.y = 0.f;
+    else if(m_camera.target.y + 180.f >= (float)m_height) m_camera.target.y = (float)m_height-180.f;
 }
 
 void Room::Draw() {
@@ -59,7 +82,9 @@ void Room::Draw() {
     DrawTexturePro(*m_bg, {0, 0, 80, 45},
                    {0, 0, 320, 180},
                    {0, 0}, 0, WHITE);
+    BeginMode2D(m_camera);
     for(Layer *l : m_layers) l->Draw();
+    EndMode2D();
 }
 
 bool Room::CheckCollisionsTiles(Rectangle rec, short tile_to_check, std::string layer_name) {
@@ -80,3 +105,13 @@ Layer *Room::GetLayer(std::string layer_name) {
 std::string Room::FileName() {
     return m_filename;
 }
+
+Object *Room::GetFollowingObject() {
+    return m_following_object;
+}
+
+void Room::SetFollowingObject(Object *obj) {
+    m_following_object = obj;
+}
+
+

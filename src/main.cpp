@@ -28,6 +28,10 @@ int main() {
     Texture chouette_sprite = LoadTexture("./sprites/chouette.png");
     g_textures["chouette"] = &chouette_sprite;
 
+    Texture chouette_sleeping_sheet = LoadTexture("./sprites/chouette_sleeping_sheet.png");
+    Tileset chouette_sleeping_tilemap(&chouette_sleeping_sheet, 32, 32);
+    g_tilesets["chouette_sleeping"] = &chouette_sleeping_tilemap;
+
     Texture tileset_texture = LoadTexture("./sprites/tileset.png");
     Tileset ts(&tileset_texture, 8, 8);
     g_tilesets["dream"] = &ts;
@@ -74,6 +78,7 @@ int main() {
     }
 
     delete sm;
+    UnloadTexture(background_lg);
     UnloadTexture(tileset_texture);
     UnloadRenderTexture(render);
     UnloadMusicStream(day_music);

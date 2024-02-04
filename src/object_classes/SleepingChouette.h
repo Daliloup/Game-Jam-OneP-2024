@@ -3,6 +3,8 @@
 
 #include "../Object.h"
 
+class Tileset;
+
 //Used to come back to the real world
 class SleepingChouette : public Object {
 public:
@@ -11,6 +13,8 @@ public:
     void Update() override;
     void Draw() override;
 private:
+    Tileset *m_tileset;
+    int m_anim_state;
 };
 
 

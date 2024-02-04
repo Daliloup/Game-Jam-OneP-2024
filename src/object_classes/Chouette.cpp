@@ -34,6 +34,7 @@ Chouette::Chouette(nlohmann::json json_object) : Object(json_object) {
 }
 
 void Chouette::Update() {
+    m_object_manager->GetLayer()->GetRoom()->SetFollowingObject(this);
     m_velocity.y += m_acceleration.y;
     HandleJump();
     m_hitbox.y += m_velocity.y;
