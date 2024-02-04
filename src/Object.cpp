@@ -42,7 +42,7 @@ void Object::Update() {
 }
 
 void Object::Draw() {
-    DrawRectangleRec({m_hitbox.x, m_hitbox.y, 20, 20}, RED);
+    DrawRectangleRec(m_hitbox, RED);
 }
 
 void Object::SetPosition(Vector2 position) {

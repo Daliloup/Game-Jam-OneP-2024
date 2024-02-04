@@ -1,6 +1,7 @@
 #include "Bell.h"
 
 #include "../globals.h"
+#include "Chouette.h"
 
 #include <nlohmann/json.hpp>
 
@@ -13,6 +14,8 @@ void Bell::Update() {
     if(m_object_manager == nullptr) return;
     auto chouettes = m_object_manager->ObjectCollisionsList(this, 1);
     if(chouettes.empty()) return;
+
+    ((Chouette *)chouettes[0])->SetCheckpointPosition({m_hitbox.x-8.f, m_hitbox.y-16.f});
 
     auto chouettes_sleeping = m_object_manager->ObjectList( 3);
     if(chouettes_sleeping.empty()) return;

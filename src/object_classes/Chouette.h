@@ -17,6 +17,8 @@ public:
 
     static Object *Construct(nlohmann::json json_obect);
 
+    void SetCheckpointPosition(Vector2 pos);
+
 private:
     Tileset *m_tileset;
     float m_jump_power;
@@ -26,6 +28,8 @@ private:
     bool m_go_right;
     int m_anim_state;
     int m_sprite_index;
+
+    Vector2 m_checkpoint_position;
 
     void HandleVerticalCollisions();
     void HandleHorizontalCollisions();
