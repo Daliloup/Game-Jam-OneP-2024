@@ -24,6 +24,7 @@ std::unordered_map<std::string, int> g_values;
 
 
 int main() {
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(960, 540, "window");
     SetTargetFPS(60);
 
@@ -97,7 +98,7 @@ int main() {
         EndTextureMode();
 
         BeginDrawing();
-        DrawTexturePro(render.texture, {0, 0, 320, -180}, {0, 0, 960, 540}, {0, 0}, 0, WHITE);
+        DrawTexturePro(render.texture, {0, 0, 320, -180}, {0, 0, (float)GetRenderWidth(), (float)GetRenderHeight()}, {0, 0}, 0, WHITE);
         DrawFPS(10, 10);
         EndDrawing();
     }

@@ -5,6 +5,7 @@
 #include "../Room/ObjectLayer.h"
 #include "../Room/Room.h"
 #include "../Room/TileLayer.h"
+#include "Chouette.h"
 
 #include <nlohmann/json.hpp>
 
@@ -27,6 +28,11 @@ void Fox::Update() {
     m_velocity.x += m_acceleration.x;
     m_hitbox.x += m_velocity.x;
     HandleHorizontalCollisions();
+
+    auto cols = m_object_manager->ObjectCollisionsList(this, 1);
+    if(!cols.empty()) {
+        ((Chouette *)cols[0]) -> GetRekt();
+    }
 }
 
 void Fox::Draw() {
