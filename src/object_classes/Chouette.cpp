@@ -132,7 +132,7 @@ void Chouette::HandleHorizontalCollisions() {
         }
         else if ((m_hitbox.x < (hitbox.x + hitbox.width)) && (m_hitbox.x + m_hitbox.width > hitbox.x + hitbox.width)) {
             m_hitbox.x = hitbox.x + hitbox.width;
-            m_velocity.y = 0;
+            m_velocity.x = 0;
         }
     }
 

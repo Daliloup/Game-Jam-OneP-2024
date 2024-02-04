@@ -10,6 +10,7 @@
 #include "object_classes/Chouette.h"
 #include "object_classes/Door.h"
 #include "object_classes/RoomTrigger.h"
+#include "object_classes/Fox.h"
 #include "StateManager.h"
 #include "GameOver.h"
 
@@ -49,6 +50,10 @@ int main() {
     Tileset ts(&tileset_texture, 8, 8);
     g_tilesets["dream"] = &ts;
 
+    Texture fox_sprite_sheet = LoadTexture("./sprites/fox_sheet.png");
+    Tileset fox_sheet(&fox_sprite_sheet, 32, 18);
+    g_tilesets["fox"] = &fox_sheet;
+
     Texture bell_texture = LoadTexture("./sprites/bell.png");
     g_textures["bell"] = &bell_texture;
 
@@ -60,6 +65,7 @@ int main() {
     g_object_constructors["door"] = Door::Construct;
     g_object_constructors["button"] = Button::Construct;
     g_object_constructors["bell"] = Bell::Construct;
+    g_object_constructors["fox"] = Fox::Construct;
 
     StateManager *sm = new StateManager(new Room("level1.json"));
 
@@ -97,6 +103,7 @@ int main() {
     }
 
     delete sm;
+    UnloadTexture(fox_sprite_sheet);
     UnloadTexture(bell_texture);
     UnloadTexture(chouette_sheet_texture);
     UnloadTexture(button_texture);
