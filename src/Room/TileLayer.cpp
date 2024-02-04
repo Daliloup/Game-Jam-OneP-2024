@@ -30,7 +30,7 @@ void TileLayer::Draw() {
     int painter_y = m_offset_y;
 
     for(int y = 0; y < m_grid_cells_y; ++y) {
-        for(int x = 0; x < m_grid_cells_y; ++x) {
+        for(int x = 0; x < m_grid_cells_x; ++x) {
             m_tileset->DrawTile(m_data[x+y*m_grid_cells_x], painter_x, painter_y);
             painter_x += m_grid_cell_width;
         }

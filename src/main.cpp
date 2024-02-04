@@ -6,6 +6,7 @@
 #include "Room/Room.h"
 #include "Tileset.h"
 #include "object_classes/Chouette.h"
+#include "object_classes/Door.h"
 #include "object_classes/RoomTrigger.h"
 #include "StateManager.h"
 #include "GameOver.h"
@@ -16,10 +17,10 @@
 std::unordered_map<std::string, Tileset *> g_tilesets;
 std::unordered_map<std::string, Texture *> g_textures;
 std::unordered_map<std::string, ObjectConstructor> g_object_constructors;
+std::unordered_map<std::string, int> g_values;
 
 
 int main() {
-    g_tilesets = std::unordered_map<std::string, Tileset *>();
     InitWindow(960, 540, "window");
     SetTargetFPS(60);
 
@@ -27,6 +28,9 @@ int main() {
 
     Texture chouette_sprite = LoadTexture("./sprites/chouette.png");
     g_textures["chouette"] = &chouette_sprite;
+
+    Texture door_tile = LoadTexture("./sprites/door_tile.png");
+    g_textures["door_tile"] = &door_tile;
 
     Texture chouette_sleeping_sheet = LoadTexture("./sprites/chouette_sleeping_sheet.png");
     Tileset chouette_sleeping_tilemap(&chouette_sleeping_sheet, 32, 32);
@@ -41,6 +45,7 @@ int main() {
 
     g_object_constructors["chouette"] = Chouette::Construct;
     g_object_constructors["room_trigger"] = RoomTrigger::Construct;
+    g_object_constructors["door"] = Door::Construct;
 
     StateManager *sm = new StateManager(new Room("level1.json"));
 
@@ -78,6 +83,7 @@ int main() {
     }
 
     delete sm;
+    UnloadTexture(door_tile);
     UnloadTexture(background_lg);
     UnloadTexture(tileset_texture);
     UnloadRenderTexture(render);

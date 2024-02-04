@@ -20,8 +20,8 @@ ObjectManager::~ObjectManager() {
 }
 
 void ObjectManager::Update() {
-    for (Object *object : objects) {
-        object->Update();
+    for(int i = 0; i < objects.size(); ++i) {
+        objects[i]->Update();
     }
 }
 
