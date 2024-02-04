@@ -12,6 +12,7 @@
 #include "../Room/TileLayer.h"
 #include "../Room/Room.h"
 #include "../StateManager.h"
+#include "../Tileset.h"
 #include "../GameOver.h"
 #include "SleepingChouette.h"
 
@@ -19,21 +20,30 @@ Chouette::Chouette(Vector2 position, bool enable_multijump) : Object(position) {
     m_id = 1;
     m_velocity = {0, 0};
     m_acceleration = {0, .1f};
-    m_texture = g_textures["chouette"];
+    m_tileset = g_tilesets["chouette"];
     m_enable_multijump = enable_multijump;
     m_jump_power = 0.f;
+    m_walking = false;
+    m_go_right = false;
+    m_anim_state = 0;
+    m_sprite_index = 0;
 }
 
 Chouette::Chouette(nlohmann::json json_object) : Object(json_object) {
     //DO stuff here ?
     m_id = 1;
-    m_texture = g_textures["chouette"];
+    m_tileset = g_tilesets["chouette"];
     m_acceleration = {0, .1f};
     m_enable_multijump = false;
     m_jump_power = 0.f;
+    m_walking = false;
+    m_go_right = false;
+    m_anim_state = 0;
+    m_sprite_index = 0;
 }
 
 void Chouette::Update() {
+    ++m_anim_state;
     m_object_manager->GetLayer()->GetRoom()->SetFollowingObject(this);
     m_velocity.y += m_acceleration.y;
     HandleJump();
@@ -41,7 +51,20 @@ void Chouette::Update() {
     HandleVerticalCollisions();
 
     m_velocity.x += m_acceleration.x;
-    m_velocity.x = (float)(IsKeyDown(KEY_RIGHT) - IsKeyDown(KEY_LEFT)) * 1.f;
+    m_velocity.x = (float)(IsKeyDown(KEY_RIGHT) - IsKeyDown(KEY_LEFT)) * 1.5f;
+
+    if(IsKeyDown(KEY_RIGHT)) m_go_right = true;
+    else if(IsKeyDown(KEY_LEFT)) m_go_right = false;
+
+    if(m_velocity.x != 0) {     //walking animation
+        if(m_anim_state >= 40) m_anim_state = 0;
+        m_sprite_index = 8 + m_anim_state / 5;
+    }
+    else {
+        if(m_anim_state >= 60) m_anim_state = 0;
+        m_sprite_index = m_anim_state / 20;
+    }
+
     m_hitbox.x += m_velocity.x;
     HandleHorizontalCollisions();
 
@@ -49,9 +72,8 @@ void Chouette::Update() {
 }
 
 void Chouette::Draw() {
-    DrawTexturePro(*m_texture, {0, 0, 32, 32},
-                   {(float)(int)m_hitbox.x, (float)(int)m_hitbox.y, 32, 32},
-                   {0, 0}, 0, WHITE);
+    if(m_tileset != nullptr)
+        m_tileset->DrawTile(m_sprite_index, (int)m_hitbox.x, (int)m_hitbox.y, m_go_right);
 }
 
 Object *Chouette::Construct(nlohmann::json json_object) {
@@ -119,7 +141,8 @@ void Chouette::HandleJump() {
     }
 
     if((int)m_jump_power > 0 && IsKeyPressed(KEY_SPACE)) {
-        m_velocity.y -= m_jump_power;
+        printf("aaa\n");
+        m_velocity.y = -m_jump_power;
         m_jump_power -= 1.f;
         //m_object_manager->GetLayer()->GetRoom()->Manager()->SetState(new GameOver);
     }

@@ -83,7 +83,7 @@ void Room::Draw() {
                    {0, 0, 320, 180},
                    {0, 0}, 0, WHITE);
     BeginMode2D(m_camera);
-    for(Layer *l : m_layers) l->Draw();
+    for(int i = m_layers.size()-1; i >= 0; --i) m_layers[i]->Draw();
     EndMode2D();
 }
 

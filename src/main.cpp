@@ -5,6 +5,8 @@
 #include "Object.h"
 #include "Room/Room.h"
 #include "Tileset.h"
+#include "object_classes/Bell.h"
+#include "object_classes/Button.h"
 #include "object_classes/Chouette.h"
 #include "object_classes/Door.h"
 #include "object_classes/RoomTrigger.h"
@@ -32,13 +34,23 @@ int main() {
     Texture door_tile = LoadTexture("./sprites/door_tile.png");
     g_textures["door_tile"] = &door_tile;
 
+    Texture button_texture = LoadTexture("./sprites/button.png");
+    g_textures["button"] = &button_texture;
+
     Texture chouette_sleeping_sheet = LoadTexture("./sprites/chouette_sleeping_sheet.png");
     Tileset chouette_sleeping_tilemap(&chouette_sleeping_sheet, 32, 32);
     g_tilesets["chouette_sleeping"] = &chouette_sleeping_tilemap;
 
+    Texture chouette_sheet_texture = LoadTexture("./sprites/chouette_sheet.png");
+    Tileset chouette_sheet(&chouette_sheet_texture, 32, 32);
+    g_tilesets["chouette"] = &chouette_sheet;
+
     Texture tileset_texture = LoadTexture("./sprites/tileset.png");
     Tileset ts(&tileset_texture, 8, 8);
     g_tilesets["dream"] = &ts;
+
+    Texture bell_texture = LoadTexture("./sprites/bell.png");
+    g_textures["bell"] = &bell_texture;
 
     Texture background_lg = LoadTexture("./sprites/background_lg.png");
     g_textures["background_normal"] = &background_lg;
@@ -46,6 +58,8 @@ int main() {
     g_object_constructors["chouette"] = Chouette::Construct;
     g_object_constructors["room_trigger"] = RoomTrigger::Construct;
     g_object_constructors["door"] = Door::Construct;
+    g_object_constructors["button"] = Button::Construct;
+    g_object_constructors["bell"] = Bell::Construct;
 
     StateManager *sm = new StateManager(new Room("level1.json"));
 
@@ -83,6 +97,9 @@ int main() {
     }
 
     delete sm;
+    UnloadTexture(bell_texture);
+    UnloadTexture(chouette_sheet_texture);
+    UnloadTexture(button_texture);
     UnloadTexture(door_tile);
     UnloadTexture(background_lg);
     UnloadTexture(tileset_texture);

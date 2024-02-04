@@ -17,6 +17,7 @@ public:
 private:
     std::string m_key;
     Texture *m_texture;
+    bool m_open;
 };
 
 

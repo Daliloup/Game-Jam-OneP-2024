@@ -42,6 +42,15 @@
       "exportMode": 0,
       "arrayMode": 0,
       "defaultTileset": "dream"
+    },
+    {
+      "definition": "tile",
+      "name": "deco",
+      "gridSize": {"x": 8, "y": 8},
+      "exportID": "04098134",
+      "exportMode": 0,
+      "arrayMode": 0,
+      "defaultTileset": "dream"
     }
   ],
   "entities": [
@@ -162,10 +171,88 @@
       ],
       "texture": "../sprites/door_tile.png",
       "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAACZJREFUGJVjdNWw+a8o+JVBU5aLARlcf/yN4f57bgYmBgJgeCgAAGJUB7iQGCUDAAAAAElFTkSuQmCC"
+    },
+    {
+      "exportID": "03776233",
+      "name": "button",
+      "limit": -1,
+      "size": {"x": 8, "y": 8},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": true,
+      "resizeableY": true,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [
+        {"name": "key", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true}
+      ],
+      "texture": "../sprites/button.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAEFJREFUGJVjYKAUMMIYN8OT/yNLqK+cy8jAwMDAhC55+fZ5FA1M6EbqqhrCFWFVgA6wKtBVNUQ48v////+xKYIBACHzEytN7Lk8AAAAAElFTkSuQmCC"
+    },
+    {
+      "exportID": "04379880",
+      "name": "bell",
+      "limit": -1,
+      "size": {"x": 16, "y": 16},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#ff0000ff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": true,
+      "resizeableY": true,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": [],
+      "texture": "../sprites/bell.png",
+      "textureImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAIVJREFUOI1jYBg+oD/M+j+62O9PZv9/fzLDEEdWy4TLQGSN7w7PwjAEBlhwu+I3QRfiVQBz/u9PZv/RXUDQC+j+5tWfg9MbOMOAWIBhALLtXmZsDF5mbHhdgdMFMI3obHTAgi7AyneK8fcns//bTv3CUCxkm8ZI0ACYITitRAPUD0S6GwAAK9o/4M4feM4AAAAASUVORK5CYII="
     }
   ],
   "tilesets": [
-    {"label": "dream", "path": "../sprites/tileset.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAARxJREFUWIXtVjEOgkAQnFMrv0C0ltLQ+wMT6KhpeIAf8Bs0NDZ08gZ6ansMD7DREgtzhFw4boG9woRpNuxemLlhkkWAiKT2G+pZCmInFwCwopKn9z0AgKvKC62p5GFR4vZx2erRfeF8OVwFRYBUHhYlxTASspOHKKhon0Alfzzf2rN9M7UnyQFiBqKgQnby2md3t9USqLO+XliUbRYmOWAi1Tkk+10H/jMDXOTAxAzMBXsG+jA0Z3GgL+2muRQ1ywFTwimiZjmgu/mQI6o46xlQZ6o46xkw5YPFgTFg3QWUsKlg3QXyZWM3YrdvJQOU5ST7VjIwJpSzHOCoXQc2JvLYyUVS+00UVEjxU85VYycXxv8BCVu/5QsWLFjwBd+RKOUASKd3AAAAAElFTkSuQmCC", "tileWidth": 8, "tileHeight": 8, "tileSeparationX": 0, "tileSeparationY": 0, "tileMarginX": 0, "tileMarginY": 0},
+    {"label": "dream", "path": "../sprites/tileset.png", "image": "data:image/png;base64,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", "tileWidth": 8, "tileHeight": 8, "tileSeparationX": 0, "tileSeparationY": 0, "tileMarginX": 0, "tileMarginY": 0},
     {"label": "collision", "path": "../sprites/collisions_layer.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAC5JREFUWIXt0LENADAIA0FmYm52TDYIHUjRXePW+ohGZZ7Xjlg9oYACCgAAAN+7ybtB4dQQuTcAAAAASUVORK5CYII=", "tileWidth": 8, "tileHeight": 8, "tileSeparationX": 0, "tileSeparationY": 0, "tileMarginX": 0, "tileMarginY": 0}
   ]
 }
