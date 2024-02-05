@@ -1,13 +1,14 @@
 #include "Button.h"
 
 #include "../globals.h"
+#include "ObjectType.h"
 
 #include <nlohmann/json.hpp>
 
 Button::Button(nlohmann::json object_json) : Object(object_json) {
     m_key = object_json["values"]["key"];
     m_texture = g_textures["button"];
-    m_id = 5;
+    m_id = ObjectType_Button;
 }
 
 void Button::Update() {
@@ -19,7 +20,7 @@ void Button::Update() {
     }
 
 
-    if(!m_object_manager->ObjectCollisionsList(this, 1).empty()) {
+    if(!m_object_manager->ObjectCollisionsList(this, ObjectType_Chouette).empty()) {
         g_values[m_key] = 1;
     }
 }

@@ -5,11 +5,12 @@
 #include "nlohmann/json.hpp"
 
 #include "../globals.h"
+#include "ObjectType.h"
 
 Door::Door(nlohmann::json json_obect) : Object(json_obect) {
     m_key = json_obect["values"]["key"];
     m_texture = g_textures["door_tile"];
-    m_id = 4;
+    m_id = ObjectType_Door;
     m_open = g_values[m_key];
     m_hitbox.height = m_hitbox.height * (float)!m_open;
 }

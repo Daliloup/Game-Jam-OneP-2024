@@ -6,10 +6,11 @@
 #include "../StateManager.h"
 #include "../Tileset.h"
 #include "Chouette.h"
+#include "ObjectType.h"
 
 SleepingChouette::SleepingChouette(Vector2 position) : Object(position) {
     m_hitbox = {position.x, position.y, 32.f, 32.f};
-    m_id = 3;
+    m_id = ObjectType_SleepingChouette;
     m_tileset = g_tilesets["chouette_sleeping"];
     m_anim_state = 0;
 }
@@ -22,7 +23,7 @@ void SleepingChouette::Update() {
 
     if(!IsKeyPressed(KEY_D)) return;
 
-    auto cols = m_object_manager->ObjectCollisionsList(this, 1);
+    auto cols = m_object_manager->ObjectCollisionsList(this, ObjectType_Chouette);
     if(cols.size() > 0) {
         Room *current_room = m_object_manager->GetLayer()->GetRoom();
         std::string normal_name = current_room->FileName();
@@ -31,7 +32,7 @@ void SleepingChouette::Update() {
 
         Room *normal_room = new Room(normal_name.c_str());
         ObjectLayer *objl = (ObjectLayer *) normal_room->GetLayer("objects");
-        auto chouettes = objl->GetObjectManager()->ObjectList(1);
+        auto chouettes = objl->GetObjectManager()->ObjectList(ObjectType_Chouette);
         while (chouettes.size() > 0) {
             objl->GetObjectManager()->DestroyObject(chouettes.back());
             chouettes.pop_back();

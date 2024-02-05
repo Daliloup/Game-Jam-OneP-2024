@@ -15,9 +15,10 @@
 #include "../Tileset.h"
 #include "../GameOver.h"
 #include "SleepingChouette.h"
+#include "ObjectType.h"
 
 Chouette::Chouette(Vector2 position, bool enable_multijump) : Object(position) {
-    m_id = 1;
+    m_id = ObjectType_Chouette;
     m_hitbox.width = 16.f;
     m_hitbox.height = 24.f;
     m_hitbox.x += 9.f;
@@ -36,7 +37,7 @@ Chouette::Chouette(Vector2 position, bool enable_multijump) : Object(position) {
 
 Chouette::Chouette(nlohmann::json json_object) : Object(json_object) {
     //DO stuff here ?
-    m_id = 1;
+    m_id = ObjectType_Chouette;
     m_tileset = g_tilesets["chouette"];
     m_acceleration = {0, .1f};
     m_enable_multijump = false;
@@ -105,7 +106,7 @@ void Chouette::HandleVerticalCollisions() {
         }
     }
 
-    std::vector<Object *> collisions = m_object_manager->ObjectCollisionsList(this, 4); //doors
+    std::vector<Object *> collisions = m_object_manager->ObjectCollisionsList(this, ObjectType_Door); //doors
     for (Object *object : collisions) {
         Rectangle hitbox = object->GetHitbox();
         if (((m_hitbox.y + m_hitbox.height) > hitbox.y) && (m_hitbox.y < hitbox.y)) {
@@ -131,7 +132,7 @@ void Chouette::HandleHorizontalCollisions() {
     }
 
 
-    std::vector<Object *> collisions = m_object_manager->ObjectCollisionsList(this, 4);     //doors
+    std::vector<Object *> collisions = m_object_manager->ObjectCollisionsList(this, ObjectType_Door);     //doors
     for (Object *object : collisions) {
         Rectangle hitbox = object->GetHitbox();
         if (((m_hitbox.x + m_hitbox.width) > hitbox.x) && (m_hitbox.x < hitbox.x)) {
@@ -214,7 +215,7 @@ bool Chouette::Collide() {
     }
 
     if(m_object_manager != nullptr) {
-        std::vector<Object *> collisions = m_object_manager->ObjectCollisionsList(this, 4);
+        std::vector<Object *> collisions = m_object_manager->ObjectCollisionsList(this, ObjectType_Door);
         if (!collisions.empty()) return true;
     }
 

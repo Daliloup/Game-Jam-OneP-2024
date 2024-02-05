@@ -46,6 +46,7 @@ add_executable(Chouette src/main.cpp
         src/object_classes/Bell.cpp
         src/object_classes/Fox.h
         src/object_classes/Fox.cpp
+        src/object_classes/ObjectType.h
 )
 target_link_libraries(Chouette PRIVATE raylib)
 target_include_directories(Chouette PRIVATE json/single_include)
