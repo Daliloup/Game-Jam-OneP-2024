@@ -1,6 +1,6 @@
 #include "Tileset.h"
 
-Tileset::Tileset(Texture *texture, int cell_width, int cell_height) {
+Tileset::Tileset(Texture *texture, int cell_width, int cell_height, bool unload_texture) {
     //TODO : null safety ?
     m_texture = texture;
     m_tile_width = cell_width;
@@ -9,10 +9,15 @@ Tileset::Tileset(Texture *texture, int cell_width, int cell_height) {
     m_tile_count_x = texture->width / m_tile_width;
     m_tile_count_y = texture->height / m_tile_height;
     m_tile_count = m_tile_count_x*m_tile_count_y;
+
+    m_unload_texture = unload_texture;
 }
 
 Tileset::~Tileset() {
-
+    if(m_unload_texture) {
+        UnloadTexture(*m_texture);
+    }
+    m_texture = nullptr;
 }
 
 void Tileset::DrawTile(int index, int x, int y) {
@@ -60,5 +65,7 @@ void Tileset::DrawTile(int index, int x, int y, Color c) {
                    c);
 }
 
-
+Texture *Tileset::GetTexture() {
+    return m_texture;
+}
 

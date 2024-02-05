@@ -30,36 +30,31 @@ int main() {
 
     RenderTexture render = LoadRenderTexture(320, 180);
 
-    Texture chouette_sprite = LoadTexture("./sprites/chouette.png");
-    g_textures["chouette"] = &chouette_sprite;
+    g_textures["chouette"] = new Texture(LoadTexture("./sprites/chouette.png"));
+    g_textures["door_tile"] = new Texture(LoadTexture("./sprites/door_tile.png"));
+    g_textures["button"] = new Texture (LoadTexture("./sprites/button.png"));
+    g_textures["bell"] = new Texture(LoadTexture("./sprites/bell.png"));
+    g_textures["background_normal"] = new Texture(LoadTexture("./sprites/background_lg.png"));
 
-    Texture door_tile = LoadTexture("./sprites/door_tile.png");
-    g_textures["door_tile"] = &door_tile;
 
-    Texture button_texture = LoadTexture("./sprites/button.png");
-    g_textures["button"] = &button_texture;
+    g_tilesets["chouette_sleeping"] = new Tileset(
+            new Texture(LoadTexture("./sprites/chouette_sleeping_sheet.png")),
+            32, 32, true);
 
-    Texture chouette_sleeping_sheet = LoadTexture("./sprites/chouette_sleeping_sheet.png");
-    Tileset chouette_sleeping_tilemap(&chouette_sleeping_sheet, 32, 32);
-    g_tilesets["chouette_sleeping"] = &chouette_sleeping_tilemap;
+    g_tilesets["chouette"] = new Tileset(
+            new Texture(LoadTexture("./sprites/chouette_sheet.png")),
+            32, 32, true
+            );
 
-    Texture chouette_sheet_texture = LoadTexture("./sprites/chouette_sheet.png");
-    Tileset chouette_sheet(&chouette_sheet_texture, 32, 32);
-    g_tilesets["chouette"] = &chouette_sheet;
+    g_tilesets["dream"] = new Tileset(
+            new Texture(LoadTexture("./sprites/tileset.png")),
+            8, 8, true
+            );
 
-    Texture tileset_texture = LoadTexture("./sprites/tileset.png");
-    Tileset ts(&tileset_texture, 8, 8);
-    g_tilesets["dream"] = &ts;
-
-    Texture fox_sprite_sheet = LoadTexture("./sprites/fox_sheet.png");
-    Tileset fox_sheet(&fox_sprite_sheet, 32, 18);
-    g_tilesets["fox"] = &fox_sheet;
-
-    Texture bell_texture = LoadTexture("./sprites/bell.png");
-    g_textures["bell"] = &bell_texture;
-
-    Texture background_lg = LoadTexture("./sprites/background_lg.png");
-    g_textures["background_normal"] = &background_lg;
+    g_tilesets["fox"] = new Tileset(
+            new Texture(LoadTexture("./sprites/fox_sheet.png")),
+            32, 18, true
+            );
 
     g_object_constructors["chouette"] = Chouette::Construct;
     g_object_constructors["room_trigger"] = RoomTrigger::Construct;
@@ -132,13 +127,16 @@ int main() {
     }
 
     delete sm;
-    UnloadTexture(fox_sprite_sheet);
-    UnloadTexture(bell_texture);
-    UnloadTexture(chouette_sheet_texture);
-    UnloadTexture(button_texture);
-    UnloadTexture(door_tile);
-    UnloadTexture(background_lg);
-    UnloadTexture(tileset_texture);
+
+    for(auto a : g_textures) {
+        UnloadTexture(*a.second);
+        delete a.second;
+    }
+    g_textures.clear();
+
+    for(auto a : g_tilesets) delete a.second;
+    g_tilesets.clear();
+
     UnloadRenderTexture(render);
     UnloadMusicStream(day_music);
     UnloadMusicStream(dream_music);
