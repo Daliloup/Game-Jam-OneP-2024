@@ -16,6 +16,7 @@ Tileset::Tileset(Texture *texture, int cell_width, int cell_height, bool unload_
 Tileset::~Tileset() {
     if(m_unload_texture) {
         UnloadTexture(*m_texture);
+        delete m_texture;
     }
     m_texture = nullptr;
 }
