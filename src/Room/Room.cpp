@@ -39,13 +39,20 @@ Room::Room(const char *filename) : State() {
         m_layers.push_back(l);
     }
 
-    if(m_filename[m_filename.size()-6] == 'N') {
-        //TODO : load nighmare bg
-        m_bg = nullptr;
+    printf("first %lu\n", g_textures.size());
+    if(level_json.contains("values")) {
+        nlohmann::basic_json values_json = level_json["values"];
+        if(values_json.contains("background") && values_json["background"] != "") {     //Do not replace the second condition by !.empty()
+            m_bg = g_textures[values_json["background"]];
+        }
+        else {
+            m_bg = nullptr;
+        }
     }
     else {
-        m_bg = g_textures["background_normal"];
+        m_bg = nullptr;
     }
+    printf("second %lu\n", g_textures.size());
 
     m_camera = {
             {0.f, 0.f},

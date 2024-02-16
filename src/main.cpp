@@ -129,6 +129,7 @@ int main() {
     delete sm;
 
     for(auto a : g_textures) {
+        if(a.second == nullptr) continue;
         UnloadTexture(*a.second);
         delete a.second;
     }

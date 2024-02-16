@@ -4,6 +4,7 @@
   "height": 240,
   "offsetX": 0,
   "offsetY": 0,
+  "values": {"background": "background_normal"},
   "layers": [
     {
       "name": "objects",
